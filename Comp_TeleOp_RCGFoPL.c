@@ -52,7 +52,7 @@ void drive() //moving method
 			{
 				motor[Left] = -pow(joystick.joy1_y2, 2)/100;//(joystick.joy1_y2*100)/128; //moves left side forward/backward on the motor's scale
 			}
-  	}
+		}
 		else
 		{
 			motor[Left] = 0; //stops movement of the left side
@@ -71,43 +71,43 @@ void drive() //moving method
 		}
 		else
 		{
-				motor[Right] = 0; //stops movement of the right side
+			motor[Right] = 0; //stops movement of the right side
 		}
-  }
-  else
-  {
-  	if(abs(joystick.joy1_y2)>10) //prevents idle movement from small values
+	}
+	else
+	{
+		if(abs(joystick.joy1_y2)>10) //prevents idle movement from small values
 		{
 			if(joystick.joy1_y2>0)
 			{
-				motor[Left] = pow(joystick.joy1_y2, 2)/200;//(joystick.joy1_y2*100)/128; //moves left side forward/backward on the motor's scale
+				motor[Left] = pow(joystick.joy1_y2, 2)/400;//(joystick.joy1_y2*100)/128; //moves left side forward/backward on the motor's scale
 			}
 			else
 			{
-				motor[Left] = -pow(joystick.joy1_y2, 2)/200;//(joystick.joy1_y2*100)/128; //moves left side forward/backward on the motor's scale
-			}
-  	}
-  	else
-  	{
-  		motor[Left] = 0;
-  	}
-
-  	if(abs(joystick.joy1_y1)>10)
-		{
-			if(joystick.joy1_y1>0)
-			{
-				motor[Right] = pow(joystick.joy1_y1, 2)/200; //(joystick.joy1_y1*100)/128; //moves right side forward/backward on the motor's scale
-			}
-			else
-			{
-				motor[Right] = -pow(joystick.joy1_y1, 2)/200; //(joystick.joy1_y1*100)/128; //moves right side forward/backward on the motor's scale
+				motor[Left] = -pow(joystick.joy1_y2, 2)/400;//(joystick.joy1_y2*100)/128; //moves left side forward/backward on the motor's scale
 			}
 		}
 		else
 		{
-				motor[Right] = 0; //stops movement of the right side
+			motor[Left] = 0;
 		}
-  }
+
+		if(abs(joystick.joy1_y1)>10)
+		{
+			if(joystick.joy1_y1>0)
+			{
+				motor[Right] = pow(joystick.joy1_y1, 2)/400; //(joystick.joy1_y1*100)/128; //moves right side forward/backward on the motor's scale
+			}
+			else
+			{
+				motor[Right] = -pow(joystick.joy1_y1, 2)/400; //(joystick.joy1_y1*100)/128; //moves right side forward/backward on the motor's scale
+			}
+		}
+		else
+		{
+			motor[Right] = 0; //stops movement of the right side
+		}
+	}
 
 
 }
@@ -158,13 +158,13 @@ void flag() //flag method
 
 void lift() //lift method
 {
-	if(!sniper)
-	{
+	//if(!sniper)
+  //{
 		if(abs(joystick.joy2_y1)>10)
 		{
 			motor[mLift] = joystick.joy2_y1; //moves lift up
 		}
- 		else if(joy1Btn(6))
+		else if(joy1Btn(6))
 		{
 			motor[mLift] = 100;
 		}
@@ -175,27 +175,27 @@ void lift() //lift method
 		else
 		{
 			motor[mLift] = 0;
-  	}
-	}
-	else
-	{
-		if(abs(joystick.joy2_y1)>10)
-		{
-			motor[mLift] = joystick.joy2_y1/2; //moves lift up
 		}
- 		else if(joy1Btn(6))
-		{
-			motor[mLift] = 50;
-		}
-		else if(joy1Btn(8))
-		{
-			motor[mLift] = -50;
-		}
-		else
-		{
-			motor[mLift] = 0;
-  	}
-	}
+	//}
+	//else
+	//{
+	//	if(abs(joystick.joy2_y1)>10)
+	//	{
+	//		motor[mLift] = joystick.joy2_y1/2; //moves lift up
+	//	}
+	//	else if(joy1Btn(6))
+	//	{
+	//		motor[mLift] = 50;
+	//	}
+	//	else if(joy1Btn(8))
+	//	{
+	//		motor[mLift] = -50;
+	//	}
+	//	else
+	//	{
+	//		motor[mLift] = 0;
+	//	}
+	//}
 }
 
 void dispenser()//dispenser method
@@ -216,26 +216,26 @@ void dispenser()//dispenser method
 
 void liftLimit()
 {
-    if(joy2Btn(10))
-    {
-        limit = true;
-        nMotorEncoder[mLift] = 0;
-    }
-    if(limit)
-    {
-        if(nMotorEncoder[mLift] < 0)
-        {
-            while(nMotorEncoder[mLift] < 0)
-            {
-                motor[mLift] = 90;
-            }
-            motor[mLift] = 0;
-        }
-        if (joy2Btn(9))
-        {
-            limit = false;
-        }
-    }
+	if(joy2Btn(10))
+	{
+		limit = true;
+		nMotorEncoder[mLift] = 0;
+	}
+	if(limit)
+	{
+		if(nMotorEncoder[mLift] < 0)
+		{
+			while(nMotorEncoder[mLift] < 0)
+			{
+				motor[mLift] = 90;
+			}
+			motor[mLift] = 0;
+		}
+		if (joy2Btn(9))
+		{
+			limit = false;
+		}
+	}
 }
 
 
@@ -255,7 +255,7 @@ task main()
 			liftLimit();
 			dispenser();
 			//all of the above code runs the methods that control all the motorized parts of our robot.
-    	wait1Msec(10); //a wait to ensure that multiple signals do not stack and to prevent lag.
+			wait1Msec(10); //a wait to ensure that multiple signals do not stack and to prevent lag.
 		}
 		else
 		{
@@ -266,5 +266,5 @@ task main()
 			motor[mIntake] = 0;
 			motor[mFlag] = 0;
 		}
- 	}
+	}
 }
