@@ -1,5 +1,4 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  none)
-#pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S4,     IR,             sensorHiTechnicIRSeeker600)
 #pragma config(Motor,  motorA,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
@@ -16,10 +15,14 @@
 #include "JoystickDriver.c"
 #define right -1
 #define left 1
+int getIRReading(){
+	wait1Msec(1);
+	return SensorValue(S4);}
 
 task main()
 {
 	waitForStart();
+	//wait1Msec(20000);
   nMotorEncoder[Right] = 0;
 	Forward(3100,70);
 	nMotorEncoder[mLift] = 0;
@@ -31,55 +34,37 @@ task main()
 	motor[mLift] = 0;
 	Forward(700,70);
 	wait1Msec(1000);
+  Turn(720,100,right);
+  while (getSensorReading()>2){
+		motor[Right] = 70;
+		motor[Left] = 70;
+	}
+	motor[Right]=0;
+	motor[Left]=0;
+
 	motor[mDispenser] = -50;
 	wait1Msec(200);
 	motor[mDispenser] = 50;
 	wait1Msec(200);
 	motor[mDispenser] = 0;
   wait1Msec(500);
-
+  Forward(5700,100);
+  motor[mIntake] = 100;
+  wait10Msec(10);
+	motor[mIntake] = 0;
+	while (getSensorReading>2){
+		motor[Right] = 70;
+		motor[Left] = 70;
+	}
+	motor[Right]=0;
+	motor[Left]=0;
+	motor[mDispenser] = -50;
+	wait1Msec(200);
+	motor[mDispenser] = 50;
+	wait1Msec(200);
+	motor[mDispenser] = 0;
+  wait1Msec(500);
 	Backward(1700,70);
 	wait1Msec(500);
-  Turn(800,100,right);
-  wait1Msec(500);
-  Forward(5700,100);
-  wait1Msec(500);
-  Turn(720,100,right);
-  wait1Msec(500);
 
-	while(nMotorEncoder[mLift] > 0)
-	{
-		motor[mLift] = -50;
-	}
-  motor[mLift] = 0;
-  wait1Msec(700);
-  Backward(2500,100);
-  wait1Msec(500);
-
-  //below is the old program.
-  /*
-	*motor[mLift] = 0;
-	*Forward(700,70);
-	*wait1Msec(1000);
-	*motor[mDispenser] = -50;
-	*wait1Msec(200);
-	*motor[mDispenser] = 50;
-	*wait1Msec(200);
-	*motor[mDispenser] = 0;
-
-	*Backward(1000,100);
-  *Turn(650,100,right);
-  *Forward(1500,100);
-  *Turn(720,100,left);
-  *Forward(1000,100);
-  *Turn(720,100,left);
-  *Forward(700,100);
-  *Turn(720,100,left);
-  *Forward(1000,100);
-
-	*Forward(1440, 100);
-	*Turn(720, 100, right);
-	*Forward(1440, 100);
-	*Turn(720,100,right);
-  */
 }

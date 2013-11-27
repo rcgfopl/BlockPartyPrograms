@@ -19,7 +19,6 @@
 
 task main()
 {
-	waitForStart();
   nMotorEncoder[Right] = 0;
 	Forward(3100,70);
 	nMotorEncoder[mLift] = 0;
@@ -56,30 +55,15 @@ task main()
   Backward(2500,100);
   wait1Msec(500);
 
-  //below is the old program.
-  /*
-	*motor[mLift] = 0;
-	*Forward(700,70);
-	*wait1Msec(1000);
-	*motor[mDispenser] = -50;
-	*wait1Msec(200);
-	*motor[mDispenser] = 50;
-	*wait1Msec(200);
-	*motor[mDispenser] = 0;
+  //Forward(1000,100);
+  //Turn(720,100,left);
+  //Forward(700,100);
+  //Turn(720,100,left);
+  //Forward(1000,100);
 
-	*Backward(1000,100);
-  *Turn(650,100,right);
-  *Forward(1500,100);
-  *Turn(720,100,left);
-  *Forward(1000,100);
-  *Turn(720,100,left);
-  *Forward(700,100);
-  *Turn(720,100,left);
-  *Forward(1000,100);
+	//Forward(1440, 100);
+	//Turn(720, 100, right);
+	//Forward(1440, 100);
+	//Turn(720,100,right);
 
-	*Forward(1440, 100);
-	*Turn(720, 100, right);
-	*Forward(1440, 100);
-	*Turn(720,100,right);
-  */
 }

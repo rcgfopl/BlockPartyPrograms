@@ -20,66 +20,43 @@
 task main()
 {
 	waitForStart();
-  nMotorEncoder[Right] = 0;
-	Forward(3100,70);
-	nMotorEncoder[mLift] = 0;
+	 motor[Right] = 100;
+	 motor[Left] = 100;
+	 wait1Msec(2300);
+	 motor[Left] = 0;
+	 motor[Right] = 0;
+	 nMotorEncoder[mLift] = 0;
 	while(nMotorEncoder[mLift] < 3800)
 	{
 		motor[mLift] = 50;
 	}
 
 	motor[mLift] = 0;
-	Forward(700,70);
+	motor[Right] = 100;
+	motor[Left] = 100;
 	wait1Msec(1000);
-	motor[mDispenser] = -50;
-	wait1Msec(200);
 	motor[mDispenser] = 50;
-	wait1Msec(200);
-	motor[mDispenser] = 0;
-  wait1Msec(500);
-
-	Backward(1700,70);
 	wait1Msec(500);
-  Turn(800,100,right);
-  wait1Msec(500);
-  Forward(5700,100);
-  wait1Msec(500);
-  Turn(720,100,right);
-  wait1Msec(500);
+	motor[mDispenser] = -50;
+	wait1Msec(500);
+	motor[mDispenser] = 0;
+	wait1Msec(100);
 
-	while(nMotorEncoder[mLift] > 0)
-	{
-		motor[mLift] = -50;
-	}
-  motor[mLift] = 0;
-  wait1Msec(700);
-  Backward(2500,100);
-  wait1Msec(500);
-
-  //below is the old program.
-  /*
-	*motor[mLift] = 0;
-	*Forward(700,70);
-	*wait1Msec(1000);
-	*motor[mDispenser] = -50;
-	*wait1Msec(200);
-	*motor[mDispenser] = 50;
-	*wait1Msec(200);
-	*motor[mDispenser] = 0;
-
-	*Backward(1000,100);
-  *Turn(650,100,right);
-  *Forward(1500,100);
-  *Turn(720,100,left);
-  *Forward(1000,100);
-  *Turn(720,100,left);
-  *Forward(700,100);
-  *Turn(720,100,left);
-  *Forward(1000,100);
-
-	*Forward(1440, 100);
-	*Turn(720, 100, right);
-	*Forward(1440, 100);
-	*Turn(720,100,right);
-  */
+//	waitForStart();
+	//wait1Msec(20000);
+//  motor[mLift] = 100;
+//  wait1Msec(700);
+//  motor[mLift] = 0;
+//  wait1Msec(200);
+//  motor[Right] = 100;
+//  motor[Left] = 100;
+//  wait1Msec(2500);
+// motor[Right] = 0;
+//  motor[Left] = 0;
+  //motor[Right] = 100;
+  //motor[Left] = -100;
+  //wait1Msec(500);
+  //motor[Right] = 0;
+  //motor[Left] = 0;
+  //wait1Msec(200);
 }

@@ -20,6 +20,7 @@
 task main()
 {
 	waitForStart();
+	//wait1Msec(20000);
   nMotorEncoder[Right] = 0;
 	Forward(3100,70);
 	nMotorEncoder[mLift] = 0;
@@ -40,22 +41,17 @@ task main()
 
 	Backward(1700,70);
 	wait1Msec(500);
-  Turn(800,100,right);
+  /*Turn(900,100,right);
   wait1Msec(500);
   Forward(5700,100);
   wait1Msec(500);
   Turn(720,100,right);
   wait1Msec(500);
-
-	while(nMotorEncoder[mLift] > 0)
-	{
-		motor[mLift] = -50;
-	}
-  motor[mLift] = 0;
+  motor[mLift] = -100;
   wait1Msec(700);
   Backward(2500,100);
   wait1Msec(500);
-
+   */
   //below is the old program.
   /*
 	*motor[mLift] = 0;

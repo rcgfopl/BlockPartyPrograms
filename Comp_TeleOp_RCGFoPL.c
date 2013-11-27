@@ -1,3 +1,4 @@
+
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  none)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S4,     IR,             sensorHiTechnicIRSeeker600)
@@ -142,7 +143,7 @@ void flag() //flag method
 			motor[mFlag]= 100; //moves flag attachment clockwise
 		else if(joystick.joy2_TopHat == 6 )
 			motor[mFlag]= -100; //moves flag attachment counterclockwise
-		else
+	else
 			motor[mFlag] = 0; //stops moving flag attachment
 	}
 	else
@@ -237,7 +238,6 @@ void liftLimit()
 		}
 	}
 }
-
 
 task main()
 {
