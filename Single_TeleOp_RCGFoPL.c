@@ -124,18 +124,18 @@ void flag() //flag method
 {
 	if(!sniper)
 	{
-		if(joystick.joy2_TopHat == 2)
+		if(joystick.joy2_TopHat == 2 || joystick.joy1_TopHat == 2)
 			motor[mFlag]= 100; //moves flag attachment clockwise
-		else if(joystick.joy2_TopHat == 6 )
+		else if(joystick.joy2_TopHat == 6 || joystick.joy1_TopHat == 6)
 			motor[mFlag]= -100; //moves flag attachment counterclockwise
 	else
 			motor[mFlag] = 0; //stops moving flag attachment
 	}
 	else
 	{
-		if(joystick.joy2_TopHat == 2)
+		if(joystick.joy2_TopHat == 2 || joystick.joy1_TopHat == 2)
 			motor[mFlag]= 50; //moves flag attachment clockwise
-		else if(joystick.joy2_TopHat == 6 )
+		else if(joystick.joy2_TopHat == 6 || joystick.joy1_TopHat == 2)
 			motor[mFlag]= -50; //moves flag attachment counterclockwise
 		else
 			motor[mFlag] = 0; //stops moving flag attachment
@@ -202,7 +202,7 @@ void dispenser()//dispenser method
 
 void liftLimit()
 {
-	if(joy2Btn(10))
+	if(joy2Btn(10) || joy1Btn(10))
 	{
 		limit = true;
 		nMotorEncoder[mLift] = 0;
@@ -226,9 +226,9 @@ void liftLimit()
 
 void winch()
 {
-	if (joy2Btn(11)) {
+	if (joy2Btn(11)||joy1Btn(11)) {
 		motor[mWinch1] = motor[mWinch2] = 100;
-	} else if (joy2Btn(12)) {
+	} else if (joy2Btn(12)||joy1Btn(12)) {
 		motor[mWinch1] = motor[mWinch2] = -100;
 	} else {
 		motor[mWinch1] = motor[mWinch2] = 0;

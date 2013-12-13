@@ -1,5 +1,6 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  none)
-#pragma config(Sensor, S1,     ,               sensorI2CMuxController)
+#pragma config(Sensor, S2,     Ultra,          sensorSONAR)
+#pragma config(Sensor, S3,     Ultra2,         sensorSONAR)
 #pragma config(Sensor, S4,     IR,             sensorHiTechnicIRSeeker600)
 #pragma config(Motor,  motorA,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
@@ -20,6 +21,17 @@
 task main()
 {
 	waitForStart();
+	int choice;
+	while(choice != -1)
+	{
+		int choice = picker();
+	}
+	if(choice == 1)
+	{
+	}
+	else if(choice == 2)
+	{
+	}
   nMotorEncoder[Right] = 0;
 	Forward(3100,70);
 	nMotorEncoder[mLift] = 0;

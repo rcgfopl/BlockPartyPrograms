@@ -1,3 +1,7 @@
+#include "drivers/hitechnic-sensormux.h"
+
+#include "drivers/lego-ultrasound.h"
+
 void Forward(int distance, int power)
 {
 	nMotorEncoder[Left] = 0;
@@ -7,6 +11,43 @@ void Forward(int distance, int power)
 	{
 		motor[Left] = power;
 		motor[Right] = power;
+	}
+  	motor[Left] = 0;
+	motor[Right] = 0;
+}
+
+void ForwardWithSonar(int distance, int power)
+{
+	nMotorEncoder[Left] = 0;
+	nMotorEncoder[Right] = 0;
+
+	while((nMotorEncoder[Right]) < distance)
+  {
+		int value = SensorValue[Ultra];
+		if((value>=255 || value<0))
+		{
+			motor[Left] = power;
+			motor[Right] = power;
+		}
+	}
+	motor[Left] = 0;
+	motor[Right] = 0;
+}
+
+void ForwardWithTwoSonar(int distance, int power)
+{
+	nMotorEncoder[Left] = 0;
+	nMotorEncoder[Right] = 0;
+
+	while((nMotorEncoder[Right]) < distance)
+  {
+		int value  = USreadDist(Ultra);
+		int value2 = USreadDist(Ultra2);
+		if((value>=255 || value<0) || (value2>=255 || value<0))
+		{
+			motor[Left] = power;
+			motor[Right] = power;
+		}
 	}
 	motor[Left] = 0;
 	motor[Right] = 0;
@@ -26,6 +67,43 @@ void Backward(int distance, int power)
 	motor[Right] = 0;
 }
 
+void BackwardWithSonar(int distance, int power)
+{
+	nMotorEncoder[Left] = 0;
+	nMotorEncoder[Right] = 0;
+
+	while((nMotorEncoder[Right] )> -distance)
+	{
+		int value = SensorValue[Ultra];
+		if(value>=255 || value<0)
+		{
+			motor[Left] = -power;
+			motor[Right] = -power;
+		}
+	}
+	motor[Left] = 0;
+	motor[Right] = 0;
+}
+
+void BackwardWithTwoSonar(int distance, int power)
+{
+	nMotorEncoder[Left] = 0;
+	nMotorEncoder[Right] = 0;
+
+	while((nMotorEncoder[Right]) < distance)
+  {
+		int value  = USreadDist(Ultra);
+		int value2 = USreadDist(Ultra2);
+		if((value>=255 || value<0) || (value2>=255 || value<0))
+		{
+			motor[Left] = -power;
+			motor[Right] = -power;
+		}
+	}
+	motor[Left] = 0;
+	motor[Right] = 0;
+}
+
 void Turn(int distance, int power, int dir)
 {
 	nMotorEncoder[Left] = 0;
@@ -38,6 +116,44 @@ void Turn(int distance, int power, int dir)
 	}
 	motor[Left] = 0;
 	motor[Right] = 0;
+}
+
+int picker()
+{
+	int x = 1;
+	int y = 0;
+	if(y == 0)
+	{
+		while(nNxtButtonPressed != 3)
+		{
+			nxtDisplayCenteredTextLine(3,"Hello There! This is the Autonomous Chooser.");
+		 	nxtDisplayCenteredTextLine(4,"Please pick the autonomous program number you would like to run.");
+   	}
+   	while(nNxtButtonPressed == 3) {}
+   	eraseDisplay();
+   	y++;
+ 	}
+  if (y == 1)
+  {
+			nxtDisplayCenteredTextLine(5,"%d",x);
+		if(nNxtButtonPressed == 1)
+		{
+	 		x++;
+		}
+		else if(nNxtButtonPressed == 2)
+		{
+	 		x--;
+		}
+		else if(nNxtButtonPressed == 3)
+		{
+	 		return x;
+		}
+		eraseDisplay();
+	}
+	eraseDisplay();
+	nxtDisplayCenteredTextLine(4, "Oh my. Why did we get here? Something went wrong.");
+	wait1Msec(100);
+	return -1;
 }
 
 //void selectTime()
