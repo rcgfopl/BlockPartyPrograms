@@ -196,7 +196,7 @@ void dispenser()//dispenser method
 	}
 	else
 	{
-		servo[sCubes] = 127; //dispenser stops moving
+		servo[sCubes] = 126; //dispenser stops moving
 	}
 }
 
@@ -226,9 +226,9 @@ void liftLimit()
 
 void winch()
 {
-	if (joy2Btn(11)) {
+	if (joy2Btn(11)||joy1Btn(11)) {
 		motor[mWinch1] = motor[mWinch2] = 100;
-	} else if (joy2Btn(12)) {
+	} else if (joy2Btn(12)||joy1Btn(12)) {
 		motor[mWinch1] = motor[mWinch2] = -100;
 	} else {
 		motor[mWinch1] = motor[mWinch2] = 0;
@@ -237,7 +237,7 @@ void winch()
 
 task main()
 {
-	servo[sCubes] = 127;
+	servo[sCubes] = 126;
 	waitForStart();
 
 	while(true)
@@ -262,7 +262,7 @@ task main()
 			motor[mLift] = 0;
 			motor[mFlag] = 0;
 			motor[mWinch1] = motor[mWinch2] = 0;
-			servo[sCubes] = 127;
+			servo[sCubes] = 126;
 		}
 	}
 }

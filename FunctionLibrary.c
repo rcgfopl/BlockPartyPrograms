@@ -138,11 +138,17 @@ int picker()
 			nxtDisplayCenteredTextLine(5,"%d",x);
 		if(nNxtButtonPressed == 1)
 		{
-	 		x++;
+			if(x == 5)
+				{x=1;}
+			else
+	 			{x++;}
 		}
 		else if(nNxtButtonPressed == 2)
 		{
-	 		x--;
+			if(x == 1)
+				{x=5;}
+			else
+	 			{x--;}
 		}
 		else if(nNxtButtonPressed == 3)
 		{
@@ -154,8 +160,76 @@ int picker()
 	nxtDisplayCenteredTextLine(4, "Oh my. Why did we get here? Something went wrong.");
 	wait1Msec(100);
 	return -1;
+
 }
 
+void ForwardWithTimeUS(int time, int power)
+{
+	unsigned long endTime = nPgmTime + time;
+	while(nPgmTime < endTime)
+	{
+		int leftUS = USreadDist (Ultra);
+		int rightUS = USreadDist (Ultra2);
+		if ((leftUS > 0 || leftUS < 255) || (rightUS > 0 || rightUS < 255))
+		{
+				motor[Right] = 0;
+				motor[Left] = 0;
+		}
+		else
+		{
+				motor[Right] = power;
+				motor[Left] = power;
+		}
+	}
+	motor[Right] = 0;
+	motor[Left] = 0;
+}
+
+void ForwardWithTime(int time, int power)
+{
+	unsigned long endTime = nPgmTime + time;
+	while(nPgmTime < endTime)
+	{
+				motor[Right] = power;
+				motor[Left] = power;
+	}
+	motor[Right] = 0;
+	motor[Left] = 0;
+}
+
+void BackwardWithTimeUS(int time, int power)
+{
+	unsigned long endTime = nPgmTime + time;
+	while(nPgmTime < endTime)
+	{
+		int leftUS = USreadDist (Ultra);
+		int rightUS = USreadDist (Ultra2);
+		if ((leftUS > 0 || leftUS < 255) || (rightUS > 0 || rightUS < 255))
+		{
+				motor[Right] = -power;
+				motor[Left] = -power;
+		}
+		else
+		{
+				motor[Right] = -power;
+				motor[Left] = -power;
+		}
+	}
+	motor[Right] = 0;
+	motor[Left] = 0;
+}
+
+void BackwardWithTime(int time, int power)
+{
+	unsigned long endTime = nPgmTime + time;
+	while(nPgmTime < endTime)
+	{
+				motor[Right] = -power;
+				motor[Left] = -power;
+	}
+	motor[Right] = 0;
+	motor[Left] = 0;
+}
 //void selectTime()
 //{
 //	while(!timeSelected)

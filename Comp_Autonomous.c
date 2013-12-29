@@ -1,4 +1,4 @@
-#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  none)
+#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  none)g
 #pragma config(Sensor, S2,     Ultra,          sensorSONAR)
 #pragma config(Sensor, S3,     Ultra2,         sensorSONAR)
 #pragma config(Sensor, S4,     IR,             sensorHiTechnicIRSeeker600)
@@ -24,49 +24,139 @@ task main()
 	int choice;
 	while(choice != -1)
 	{
-		int choice = picker();
+		choice = picker();    //How do you spell weifan
 	}
 	if(choice == 1)
 	{
+
 	}
 	else if(choice == 2)
 	{
+			nMotorEncoder[Right] = 0;
+		Forward(3100,70);
+		nMotorEncoder[mLift] = 0;
+		while(nMotorEncoder[mLift] < 3800)
+		{
+			motor[mLift] = 50;
+		}
+
+		motor[mLift] = 0;
+		Forward(700,70);
+		wait1Msec(1000);
+		motor[mDispenser] = -50;
+		wait1Msec(200);
+		motor[mDispenser] = 50;
+		wait1Msec(200);
+		motor[mDispenser] = 0;
+  	wait1Msec(500);
+
+		Backward(1700,70);
+		wait1Msec(500);
+  	Turn(800,100,left);
+  	wait1Msec(500);
+  	Forward(5700,100);
+  	wait1Msec(500);
+  	Turn(720,100,left);
+  	wait1Msec(500);
+
+		while(nMotorEncoder[mLift] > 0)
+		{
+			motor[mLift] = -50;
+		}
+  	motor[mLift] = 0;
+  	wait1Msec(700);
+  	Backward(2500,100);
+  	wait1Msec(500);
 	}
-  nMotorEncoder[Right] = 0;
-	Forward(3100,70);
-	nMotorEncoder[mLift] = 0;
-	while(nMotorEncoder[mLift] < 3800)
+	else if (choice == 3)              //Section of Code that Chris Worked on, on 12/13/2013, - = unknown distance,
 	{
-		motor[mLift] = 50;
+		nMotorEncoder[Right] = 0;
+		Forward(-,-);
+		nMotorEncoder[mLift] = 0;
+		while(nMotorEncoder[mLift] < -)
+		{
+			motor[mLift] = -;
+		}
 	}
-
-	motor[mLift] = 0;
-	Forward(700,70);
-	wait1Msec(1000);
-	motor[mDispenser] = -50;
-	wait1Msec(200);
-	motor[mDispenser] = 50;
-	wait1Msec(200);
-	motor[mDispenser] = 0;
-  wait1Msec(500);
-
-	Backward(1700,70);
-	wait1Msec(500);
-  Turn(800,100,right);
-  wait1Msec(500);
-  Forward(5700,100);
-  wait1Msec(500);
-  Turn(720,100,right);
-  wait1Msec(500);
-
-	while(nMotorEncoder[mLift] > 0)
+	else if(choice == 4)              //End of section
 	{
-		motor[mLift] = -50;
+			nMotorEncoder[Right] = 0;
+		Forward(3100,70);
+		nMotorEncoder[mLift] = 0;
+		while(nMotorEncoder[mLift] < 3800)
+		{
+			motor[mLift] = 50;
+		}
+
+		motor[mLift] = 0;
+		Forward(700,70);
+		wait1Msec(1000);
+		motor[mDispenser] = -50;
+		wait1Msec(200);
+		motor[mDispenser] = 50;
+		wait1Msec(200);
+		motor[mDispenser] = 0;
+  	wait1Msec(500);
+
+		Backward(1700,70);
+		wait1Msec(500);
+  	Turn(800,100,right);
+  	wait1Msec(500);
+  	Forward(5700,100);
+  	wait1Msec(500);
+  	Turn(720,100,right);
+  	wait1Msec(500);
+
+		while(nMotorEncoder[mLift] > 0)
+		{
+			motor[mLift] = -50;
+		}
+  	motor[mLift] = 0;
+  	wait1Msec(700);
+  	Backward(2500,100);
+  	wait1Msec(500);
 	}
-  motor[mLift] = 0;
-  wait1Msec(700);
-  Backward(2500,100);
-  wait1Msec(500);
+	else if (choice == 5)
+	{
+
+	}
+
+	//this was our previous version of the program.
+	// nMotorEncoder[Right] = 0;
+	//Forward(3100,70);
+	//nMotorEncoder[mLift] = 0;
+	//while(nMotorEncoder[mLift] < 3800)
+	//{
+	//	motor[mLift] = 50;
+	//}
+
+	//motor[mLift] = 0;
+	//Forward(700,70);
+	//wait1Msec(1000);
+	//motor[mDispenser] = -50;
+	//wait1Msec(200);
+	//motor[mDispenser] = 50;
+	//wait1Msec(200);
+	//motor[mDispenser] = 0;
+ // wait1Msec(500);
+
+	//Backward(1700,70);
+	//wait1Msec(500);
+ // Turn(800,100,right);
+ // wait1Msec(500);
+ // Forward(5700,100);
+ // wait1Msec(500);
+ // Turn(720,100,right);
+ // wait1Msec(500);
+
+	//while(nMotorEncoder[mLift] > 0)
+	//{
+	//	motor[mLift] = -50;
+	//}
+ // motor[mLift] = 0;
+ // wait1Msec(700);
+ // Backward(2500,100);
+ // wait1Msec(500);
 
   //below is the old program.
   /*
