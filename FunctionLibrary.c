@@ -1,5 +1,4 @@
 #include "drivers/hitechnic-sensormux.h"
-
 #include "drivers/lego-ultrasound.h"
 
 void Forward(int distance, int power)
@@ -170,7 +169,7 @@ void ForwardWithTimeUS(int time, int power)
 	{
 		int leftUS = USreadDist (Ultra);
 		int rightUS = USreadDist (Ultra2);
-		if ((leftUS > 0 || leftUS < 255) || (rightUS > 0 || rightUS < 255))
+		if ((leftUS > 0 && leftUS < 255) || (rightUS > 0 && rightUS < 255))
 		{
 				motor[Right] = 0;
 				motor[Left] = 0;
@@ -196,6 +195,35 @@ void ForwardWithTime(int time, int power)
 	motor[Right] = 0;
 	motor[Left] = 0;
 }
+
+void ForwardWithModTime(int time, int power)
+{
+	unsigned long endTime = nPgmTime + time;
+	while(nPgmTime < endTime)
+	{
+				motor[Right] = power + 15;
+				motor[Left] = power;
+	}
+	motor[Right] = 0;
+	motor[Left] = 0;
+}
+
+//void ForwardWithTwoTime(int time, int power)
+//{
+//	unsigned long endTime = nPgmTime + time;
+//	while(nPgmTime < endTime)
+//	{
+//				motor[Right] = power;
+//				motor[Right2] = power;
+//				motor[Left] = power;
+//				motor[Left2] = power;
+//	}
+//	motor[Left] = 0;
+//	motor[Right2] = 0;
+//	motor[Right] = 0;
+//	motor[Left2] = 0;
+//}
+
 
 void BackwardWithTimeUS(int time, int power)
 {
@@ -230,6 +258,34 @@ void BackwardWithTime(int time, int power)
 	motor[Right] = 0;
 	motor[Left] = 0;
 }
+
+void BackwardWithModTime(int time, int power)
+{
+	unsigned long endTime = nPgmTime + time;
+	while(nPgmTime < endTime)
+	{
+				motor[Right] = -power - 15;
+				motor[Left] = -power;
+	}
+	motor[Right] = 0;
+	motor[Left] = 0;
+}
+//void BackwardWithTwoTime(int time, int power)
+//{
+//	unsigned long endTime = nPgmTime + time;
+//	while(nPgmTime < endTime)
+//	{
+//				motor[Right] = -power;
+//				motor[Right2] = -power;
+//				motor[Left] = -power;
+//				motor[Left2] = -power;
+//	}
+//	motor[Left] = 0;
+//	motor[Right2] = 0;
+//	motor[Right] = 0;
+//	motor[Left2] = 0;
+//}
+
 //void selectTime()
 //{
 //	while(!timeSelected)
