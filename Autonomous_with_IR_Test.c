@@ -1,17 +1,18 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTServo)
-#pragma config(Sensor, S2,     IR,             sensorHiTechnicIRSeeker600)
-#pragma config(Sensor, S3,     Ultra,          sensorSONAR)
-#pragma config(Sensor, S4,     Ultra2,         sensorSONAR)
+#pragma config(Sensor, S1,     ,               sensorI2CMuxController)
+#pragma config(Sensor, S2,     Ultra,          sensorSONAR)
+#pragma config(Sensor, S3,     Ultra2,         sensorSONAR)
+#pragma config(Sensor, S4,     IR,             sensorHiTechnicIRSeeker600)
 #pragma config(Motor,  motorA,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
-#pragma config(Motor,  mtr_S1_C1_1,     Right,         tmotorTetrix, openLoop, reversed, encoder)
-#pragma config(Motor,  mtr_S1_C1_2,     mLift,         tmotorTetrix, openLoop, encoder)
-#pragma config(Motor,  mtr_S1_C2_1,     mIntake,       tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C2_2,     mFlag,         tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C3_1,     Left,          tmotorTetrix, openLoop, encoder)
-#pragma config(Motor,  mtr_S1_C3_2,     mDispenser,    tmotorTetrix, openLoop)
-#pragma config(Servo,  srvo_S1_C4_1,    sCubes,               tServoStandard)
+#pragma config(Motor,  mtr_S1_C1_1,     Right,         tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C1_2,     mFlag,         tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_1,     mHinge,        tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C2_2,     Left,          tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C3_1,     mLift,         tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C3_2,     mWrist,        tmotorTetrix, openLoop)
+#pragma config(Servo,  srvo_S1_C4_1,    sHook,                tServoContinuousRotation)
 #pragma config(Servo,  srvo_S1_C4_2,    servo2,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_3,    servo3,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_4,    servo4,               tServoNone)
@@ -23,16 +24,17 @@
 #include "FunctionLibrary.c"
 task main()
 {
-	waitForStart();
-	int beacon = 0;
-	int i = 0;
+	//waitForStart();
+	int beacon = 0; //holds which beacon the robot is at.
+	int i = 0; 			//holds the IR sensor value.
 
-	//time to find dat beacon
-	while(!(i >= 4 && i <= 6) && beacon < 4)
+	//loops until the sensor finds the beacon.
+	while(i != 5 && beacon < 4)
 	{
+		i=0;
 		for(int a = 0; a <100; a++)
 		{
-			if( a == 0)
+			if(a == 0)
 			{
 				i  = SensorValue[IR];
 			}
@@ -41,54 +43,119 @@ task main()
 				int b = SensorValue[IR];
 				if(b != i)
 				{
+					i = 0;
 					a = 0;
 				}
 			}
 		}
-		if(!(beacon == 0 || beacon == 2))
+		if(i != 5)
 		{
-			ForwardWithTime(500,100);
-			motor[Left] = 0;
-			motor[Right] = 0;
-			wait1Msec(1000);
+			if(!(beacon == 0 || beacon == 2))
+			{
+				ForwardWithTwoTime(300,100);
+				//motor[Left] = 0;
+				//motor[Right2] = 0;
+				//motor[Right] = 0;
+				//motor[Left2] = 0;
+				//wait1Msec(1000);
+			}
+			else if(beacon == 0)
+			{
+				ForwardWithTwoTime(400,100);
+				//motor[Left] = 0;
+				//motor[Right2] = 0;
+				//motor[Right] = 0;
+				//motor[Left2] = 0;
+				//wait1Msec(1000);
+			}
+			else if(beacon == 2)
+			{
+				ForwardWithTwoTime(420,100);
+				//motor[Left] = 0;
+				//motor[Right2] = 0;
+				//motor[Right] = 0;
+				//motor[Left2] = 0;
+				//wait1Msec(1000);
+			}
+			beacon++;
 		}
-		else if(beacon == 0)
-		{
-			ForwardWithTime(1388,100);
-			motor[Left] = 0;
-			motor[Right] = 0;
-			wait1Msec(1000);
-		}
-		else if(beacon == 2)
-		{
-			ForwardWithTime(1275,100);
-			motor[Left] = 0;
-			motor[Right] = 0;
-			wait1Msec(1000);
-		}
-		beacon++;
 	}
+	if(beacon!= 1)
+	{
+  	ForwardWithTwoTime(100,100);
+		motor[Left] = 0;
+  	motor[Right2] = 0;
+		motor[Right] = 0;
+		motor[Left2] = 0;
+		wait1Msec(1000);
+		//if(i == 5)
+		//{ BackwardWithTwoTime(1000,100);}
+		//time to drop dat cube into dat box
+		motor[Left] =  -100;
+		motor[Left2] = -100;
+		motor[Right] = 100;
+		motor[Right2] = 100;
+		wait1Msec(510);
+		motor[Left] = 0;
+		motor[Left2] = 0;
+		motor[Right] = 0;
+		motor[Right2] = 0;
+		wait1Msec(1000);
 
-	//time to drop dat cube into dat box
-	//motor[Left] =  -100;
-	//motor[Right] = 100;
-	//wait1Msec(700);
-	//motor[Left] = 0;
-	//motor[Right] = 0;
-	//wait1Msec(1000);
+		ForwardWithTwoTime(350,100);
+		motor[Left] = 0;
+		motor[Left2] = 0;
+		motor[Right] = 0;
+		motor[Right2] = 0;
+		wait1Msec(1000);
+		servo[sCubes] = 255;
+		wait1Msec(500);
 
-	//ForwardWithTime(1000,100);
-	//motor[Left] = 0;
-	//motor[Right] = 0;
-	//wait1Msec(1000);
-	//servo[sCubes] = 255;
-	//wait1Msec(500);
+		BackwardWithTwoTime(300,100);
+		motor[Left] = 0;
+		motor[Left2] = 0;
+		motor[Right] = 0;
+		motor[Right2] = 0;
+		wait1Msec(1000);
+	}
+	else
+	{
+		ForwardWithTwoTime(150,100);
+		motor[Left] = 0;
+  	motor[Right2] = 0;
+		motor[Right] = 0;
+		motor[Left2] = 0;
+		wait1Msec(1000);
+		//if(i == 5)
+		//{ BackwardWithTwoTime(1000,100);}
+		//time to drop dat cube into dat box
+		motor[Left] =  -100;
+		motor[Left2] = -100;
+		motor[Right] = 100;
+		motor[Right2] = 100;
+		wait1Msec(500);
+		motor[Left] = 0;
+		motor[Left2] = 0;
+		motor[Right] = 0;
+		motor[Right2] = 0;
+		wait1Msec(1000);
 
-	//BackwardWithTime(1000,100);
-	//motor[Left] = 0;
-	//motor[Right] = 0;
-	//wait1Msec(1000);
+		ForwardWithTwoTime(325,100);
+		motor[Left] = 0;
+		motor[Left2] = 0;
+		motor[Right] = 0;
+		motor[Right2] = 0;
+		wait1Msec(1000);
+		servo[sCubes] = 255;
+		wait1Msec(500);
 
+		BackwardWithTwoTime(300,100);
+		motor[Left] = 0;
+		motor[Left2] = 0;
+		motor[Right] = 0;
+		motor[Right2] = 0;
+		wait1Msec(1000);
+	}
 	////pick where to  go based on beacon #.
 	//if(beacon == 1)
 	//{
