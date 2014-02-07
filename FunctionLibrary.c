@@ -4,6 +4,9 @@
 
 //various methods to move forward.
 
+// Move forward based on encoders
+// distance: the number of degrees to elapse on the encoders
+// power: the power level the motors will be driven at
 void Forward(int distance, int power)
 {
 	nMotorEncoder[Left] = 0;
@@ -18,6 +21,11 @@ void Forward(int distance, int power)
 	motor[Right] = 0;
 }
 
+// Move forward based on encoders while avoiding collisions
+// If the ultrasonic sensors see another robot, this will stop the robot until the
+// other robot moves away.
+// distance: the number of degrees to elapse on the encoders
+// power: the power level the motors will be driven at
 void ForwardWithSonar(int distance, int power)
 {
 	nMotorEncoder[Left] = 0;
@@ -36,6 +44,12 @@ void ForwardWithSonar(int distance, int power)
 	motor[Right] = 0;
 }
 
+// Move forward based on encoders while avoiding collisions
+// If the ultrasonic sensors see another robot, this will stop the robot until the
+// Uses both the ultrasonic sensors in parallel.
+// other robot moves away.
+// distance: the number of degrees to elapse on the encoders
+// power: the power level the motors will be driven at
 void ForwardWithTwoSonar(int distance, int power)
 {
 	nMotorEncoder[Left] = 0;
@@ -55,6 +69,12 @@ void ForwardWithTwoSonar(int distance, int power)
 	motor[Right] = 0;
 }
 
+// Move forward based on time while avoiding collisions
+// If the ultrasonic sensors see another robot, this will stop the robot until the
+// Uses both the ultrasonic sensors in parallel.
+// other robot moves away.
+// time: the number of milliseconds to move for
+// power: the power level the motors will be driven at
 void ForwardWithTimeUS(int time, int power)
 {
 	unsigned long endTime = nPgmTime + time;
@@ -77,6 +97,9 @@ void ForwardWithTimeUS(int time, int power)
 	motor[Left] = 0;
 }
 
+// Move forward based on encoders
+// time: the number of milliseconds to move for
+// power: the power level the motors will be driven at
 void ForwardWithTime(int time, int power)
 {
 	unsigned long endTime = nPgmTime + time;
@@ -89,6 +112,10 @@ void ForwardWithTime(int time, int power)
 	motor[Left] = 0;
 }
 
+// Move forward based on encoders
+// Compensates for a weaker right side of the drive train.
+// time: the number of milliseconds to move for
+// power: the power level the motors will be driven at
 void ForwardWithModTime(int time, int power)
 {
 	unsigned long endTime = nPgmTime + time;
@@ -101,6 +128,10 @@ void ForwardWithModTime(int time, int power)
 	motor[Left] = 0;
 }
 
+// Move forward based on encoders
+// Compensates for a weaker right side of the drive train.
+// distance: the number of degrees to elapse on the encoders
+// power: the power level the motors will be driven at
 void ModForward(int distance, int power)
 {
 	nMotorEncoder[Left] = 0;
@@ -114,24 +145,12 @@ void ModForward(int distance, int power)
   	motor[Left] = 0;
 	motor[Right] = 0;
 }
-//void ForwardWithTwoTime(int time, int power)
-//{
-//	unsigned long endTime = nPgmTime + time;
-//	while(nPgmTime < endTime)
-//	{
-//				motor[Right] = power;
-//				motor[Right2] = power;
-//				motor[Left] = power;
-//				motor[Left2] = power;
-//	}
-//	motor[Left] = 0;
-//	motor[Right2] = 0;
-//	motor[Right] = 0;
-//	motor[Left2] = 0;
-//}
 
 //various methods to move backwards.
 
+// Move backward based on encoders
+// distance: the number of degrees to elapse on the encoders
+// power: the power level the motors will be driven at
 void Backward(int distance, int power)
 {
 	nMotorEncoder[Left] = 0;
@@ -146,6 +165,11 @@ void Backward(int distance, int power)
 	motor[Right] = 0;
 }
 
+// Move backward based on encoders while avoiding collisions
+// If the ultrasonic sensors see another robot, this will stop the robot until the
+// other robot moves away.
+// distance: the number of degrees to elapse on the encoders
+// power: the power level the motors will be driven at
 void BackwardWithSonar(int distance, int power)
 {
 	nMotorEncoder[Left] = 0;
@@ -164,6 +188,12 @@ void BackwardWithSonar(int distance, int power)
 	motor[Right] = 0;
 }
 
+// Move backward based on encoders while avoiding collisions
+// If the ultrasonic sensors see another robot, this will stop the robot until the
+// Uses both the ultrasonic sensors in parallel.
+// other robot moves away.
+// distance: the number of degrees to elapse on the encoders
+// power: the power level the motors will be driven at
 void BackwardWithTwoSonar(int distance, int power)
 {
 	nMotorEncoder[Left] = 0;
@@ -183,6 +213,12 @@ void BackwardWithTwoSonar(int distance, int power)
 	motor[Right] = 0;
 }
 
+// Move backward based on time while avoiding collisions
+// If the ultrasonic sensors see another robot, this will stop the robot until the
+// Uses both the ultrasonic sensors in parallel.
+// other robot moves away.
+// time: the number of milliseconds to move for
+// power: the power level the motors will be driven at
 void BackwardWithTimeUS(int time, int power)
 {
 	unsigned long endTime = nPgmTime + time;
@@ -205,6 +241,9 @@ void BackwardWithTimeUS(int time, int power)
 	motor[Left] = 0;
 }
 
+// Move backward based on encoders
+// time: the number of milliseconds to move for
+// power: the power level the motors will be driven at
 void BackwardWithTime(int time, int power)
 {
 	unsigned long endTime = nPgmTime + time;
@@ -217,6 +256,10 @@ void BackwardWithTime(int time, int power)
 	motor[Left] = 0;
 }
 
+// Move backward based on encoders
+// Compensates for a weaker right side of the drive train.
+// time: the number of milliseconds to move for
+// power: the power level the motors will be driven at
 void BackwardWithModTime(int time, int power)
 {
 	unsigned long endTime = nPgmTime + time;
@@ -229,6 +272,10 @@ void BackwardWithModTime(int time, int power)
 	motor[Left] = 0;
 }
 
+// Move backward based on encoders
+// Compensates for a weaker right side of the drive train.
+// distance: the number of degrees to elapse on the encoders
+// power: the power level the motors will be driven at
 void ModBackward(int distance, int power)
 {
 	nMotorEncoder[Left] = 0;
@@ -243,24 +290,12 @@ void ModBackward(int distance, int power)
 	motor[Right] = 0;
 }
 
-//void BackwardWithTwoTime(int time, int power)
-//{
-//	unsigned long endTime = nPgmTime + time;
-//	while(nPgmTime < endTime)
-//	{
-//				motor[Right] = -power;
-//				motor[Right2] = -power;
-//				motor[Left] = -power;
-//				motor[Left2] = -power;
-//	}
-//	motor[Left] = 0;
-//	motor[Right2] = 0;
-//	motor[Right] = 0;
-//	motor[Left2] = 0;
-//}
-
 //a couple methods to turn.
 
+// Turn based on encoders
+// distance: the number of degrees to elapse on the encoders
+// power: the power level the motors will be driven at
+// dir: 1 for left, -1 for right
 void Turn(int distance, int power, int dir)
 {
 	nMotorEncoder[Left] = 0;
@@ -275,6 +310,11 @@ void Turn(int distance, int power, int dir)
 	motor[Right] = 0;
 }
 
+// Turn based on encoders
+// Compensates for a weaker right side of the drive train.
+// distance: the number of degrees to elapse on the encoders
+// power: the power level the motors will be driven at
+// dir: 1 for left, -1 for right
 void ModTurn(int distance, int power, int dir)
 {
 	nMotorEncoder[Left] = 0;
@@ -291,7 +331,9 @@ void ModTurn(int distance, int power, int dir)
 
 //Miscellaneous methods
 
-int picker() //allows us to pick our choice of autonomous program.
+// Allows us to pick our choice of autonomous program.
+// Uses a GUI and the NXT buttons.
+int picker() 
 {
 	int x = 1;
 	int y = 0;
@@ -336,7 +378,8 @@ int picker() //allows us to pick our choice of autonomous program.
 
 }
 
-void selectTime() //allows us to pick the time we wait before our autonomous program starts.
+// allows us to pick the time we wait before our autonomous program starts.
+void selectTime()
 {
 	while(!timeSelected)
 	{
@@ -369,8 +412,8 @@ void selectTime() //allows us to pick the time we wait before our autonomous pro
 	}
 }
 
-
-void startSelect() //allows us to pick if we want WaitForStart method to run.
+// allows us to pick if we want WaitForStart method to run.
+void startSelect()
 {
 	while(!startSelected)
 	{

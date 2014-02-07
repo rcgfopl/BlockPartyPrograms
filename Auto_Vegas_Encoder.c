@@ -23,27 +23,42 @@
 #define left 1
 #define right -1
 
+// whether the user has finished selecting a delay time
 bool timeSelected = false;
+// whether the robot will wait for the FCS to start (disable when testing)
 bool startSelected = false;
+// whether the user has selected to delay at the beginning of autonomous
 bool waitSelected = true;
+// how many seconds to delay before starting autonomous (used for coordinating with
+// other teams)
 int waitTime = 0;
+// the message used by the wait prompt
 string wait = "Yes";
 
-
+// standard library for talking to Samantha FCS
 #include "JoystickDriver.c"
+// our team-built function library
 #include "FunctionLibrary.c"
 
+// the starting point of the program
 task main()
 {
+  // prompt the user for a delay at the start of autonomous
 	selectTime();
+  // prompt whether the robot should wait for FCS to start
+  // They can disable it when testing the program at practice.
 	startSelect();
+  // wait for FCS to start if the user has chosen to
 	if(waitSelected)
 	{
 		waitForStart();
 	}
+  // perform the aforementioned delay
 	wait1Msec(1000*waitTime);
-	int beacon = 0; //holds which beacon the robot is at.
-	int i = 0; 			//holds the IR sensor value.
+  //holds which beacon the robot is at
+	int beacon = 0;
+	//holds the IR sensor value
+	int i = 0;
 
 	//loops until the sensor finds the beacon or until it gets to the final beacon.
 	while(i != 5 && beacon < 4)
