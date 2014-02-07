@@ -59,7 +59,7 @@ task main()
 			if(beacon == 0)
 			{
 				//the distance to get to the first beacon
-				ForwardWithModTime(1200,35);
+				ForwardWithTimeUS(1200,35);
 				motor[Right] = 0;
 				motor[Left] = 0;
 				wait1Msec(1000);
@@ -67,7 +67,7 @@ task main()
 			else if(beacon == 1)
 			{
 				//the distance to get to the second beacon
-				ForwardWithModTime(450,35);
+				ForwardWithTimeUS(450,35);
 				motor[Right] = 0;
 				motor[Left] = 0;
 				wait1Msec(1000);
@@ -75,7 +75,7 @@ task main()
 			else if(beacon == 2)
 			{
 				//the distance to get to the third beacon
-				ForwardWithModTime(900,35);
+				ForwardWithTimeUS(900,35);
 				motor[Right] = 0;
 				motor[Left] = 0;
 				wait1Msec(1000);
@@ -83,7 +83,7 @@ task main()
 			else if(beacon == 3)
 			{
 				//the distance to get to the fourth beacon
-				ForwardWithModTime(470,35);
+				ForwardWithTimeUS(470,35);
 				motor[Right] = 0;
 				motor[Left] = 0;
 				wait1Msec(1000);
@@ -103,7 +103,7 @@ task main()
 	//if the robots is at rings 2 or 3, it goes backwards, turns, goes backwards again, and then turns to face the ramp.
 	if(beacon == 1) //beacon was on first ring
 	{
-		BackwardWithModTime(800,50);
+		BackwardWithTimeUS(800,50);
 		motor[Right] = 0;
 		motor[Left] = 0;
 		wait1Msec(500);
@@ -115,7 +115,7 @@ task main()
 		motor[Left] = 0;
 		wait1Msec(500);
 
-		BackwardWithModTime(1600,50);
+		BackwardWithTimeUS(1600,50);
 		motor[Right] = 100;
 		motor[Left] = -100;
 		wait1Msec(900);
@@ -123,11 +123,11 @@ task main()
 		motor[Left] = 0;
 		wait1Msec(500);
 
-		ForwardWithModTime(1400,100);
+		ForwardWithTimeUS(1400,100);
 	}
 	else if (beacon == 2) //beacon was on second ring
 	{
-		BackwardWithModTime(1200,50);
+		BackwardWithTimeUS(1200,50);
 		motor[Right] = 0;
 		motor[Left] = 0;
 		wait1Msec(500);
@@ -139,7 +139,7 @@ task main()
 		motor[Left] = 0;
 		wait1Msec(500);
 
-		BackwardWithModTime(1600,50);
+		BackwardWithTimeUS(1600,50);
 		motor[Right] = 0;
 		motor[Left] = 0;
 		wait1Msec(500);
@@ -151,11 +151,11 @@ task main()
 		motor[Left] = 0;
 		wait1Msec(500);
 
-		ForwardWithModTime(1400,100);
+		ForwardWithTimeUS(1400,100);
 	}
 	else if (beacon == 3) //beacon was on third ring
 	{
-		ForwardWithModTime(1000,50);
+		ForwardWithTimeUS(1000,50);
 		motor[Right] = 0;
 		motor[Left] = 0;
 		wait1Msec(500);
@@ -167,7 +167,7 @@ task main()
 		motor[Left] = 0;
 		wait1Msec(500);
 
-		ForwardWithModTime(1600,50);
+		ForwardWithTimeUS(1600,50);
 		motor[Right] = 0;
 		motor[Left] = 0;
 		wait1Msec(500);
@@ -179,11 +179,11 @@ task main()
 		motor[Left] = 0;
 		wait1Msec(500);
 
-		BackwardWithModTime(1400,100);
+		BackwardWithTimeUS(1400,100);
 	}
 	else if (beacon == 4) //beacon was on fourth ring
 	{
-		ForwardWithModTime(800,50);
+		ForwardWithTimeUS(800,50);
 		motor[Right] = 0;
 		motor[Left] = 0;
 		wait1Msec(500);
@@ -195,7 +195,7 @@ task main()
 		motor[Left] = 0;
 		wait1Msec(500);
 
-		ForwardWithModTime(1600,50);
+		ForwardWithTimeUS(1600,50);
 		motor[Right] = 0;
 		motor[Left] = 0;
 		wait1Msec(500);
@@ -207,6 +207,6 @@ task main()
 		motor[Left] = 0;
 		wait1Msec(500);
 
-		BackwardWithModTime(1500,100);
+		BackwardWithTimeUS(1500,100);
 	}
 }

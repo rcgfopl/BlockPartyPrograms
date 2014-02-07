@@ -1,19 +1,19 @@
-#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTServo)
+ #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTServo)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S2,     Ultra,          sensorSONAR)
 #pragma config(Sensor, S3,     Ultra2,         sensorSONAR)
 #pragma config(Sensor, S4,     IR,             sensorHiTechnicIRSeeker600)
-#pragma config(Motor,  motorA,          mLift2,        tmotorNXT, openLoop)
+#pragma config(Motor,  motorA,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
-#pragma config(Motor,  mtr_S1_C1_1,     Right,         tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C1_2,     mFlag,         tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C2_1,     mHinge,        tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C2_2,     Left,          tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C3_1,     mLift,         tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C1_1,     mLift2,        tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C1_2,     Right,         tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C2_1,     mLift1,        tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C2_2,     mFlag,         tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C3_1,     Left,          tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_2,     mWrist,        tmotorTetrix, openLoop)
-#pragma config(Servo,  srvo_S1_C4_1,    sHook,                tServoStandard)
-#pragma config(Servo,  srvo_S1_C4_2,    AutoHook,             tServoStandard)
+#pragma config(Servo,  srvo_S1_C4_1,    AutoHook,             tServoStandard)
+#pragma config(Servo,  srvo_S1_C4_2,    sHook,                tServoStandard)
 #pragma config(Servo,  srvo_S1_C4_3,    servo3,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_4,    servo4,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_5,    servo5,               tServoNone)
@@ -25,9 +25,14 @@
 #define min 0
 #define lift_max 100
 #define lift_min 0
+#define thresh 4700
 
 bool sniper = false;
 bool limit = false;
+bool bottom = false;
+bool extended = false;
+bool clicked = false;
+bool prevClicked = false;
 
 /*------------------------------------------------|
 |Motor A1 is Right; Motor A2 is mDispenser.				|
@@ -42,7 +47,7 @@ bool limit = false;
 
 void sniperCheck() //checks to see if the robot should go in "sniper"/slow mode.
 {
-	if(joy1Btn(5) || joy2Btn(5))
+	if(joy1Btn(5))
 	{
 		sniper = true;
 	}
@@ -124,59 +129,123 @@ void drive() //moving method
 
 }
 
+
 void newLift()
 {
-	int x = nMotorEncoder[mLift];
-	if(abs(joystick.joy2_y1)>10)
+	if(!clicked)
 	{
-		if(joystick.joy2_y1 < 0)
+		motor[motorA] = 0;
+		if(nMotorEncoder[mLift1] >= thresh)
 		{
-			if(x >= lift_max)
+			extended = true;
+			bottom = false;
+		}
+		else if(nMotorEncoder[mLift1] <= 200)
+		{
+			bottom = true;
+			extended = false;
+		}
+		if(joystick.joy2_y1 > 10)
+		{
+			if(bottom)
+			{
+				motor[mLift1] = joystick.joy2_y1;
+				motor[mLift2] = 0;
+			}
+			else if(extended)
 			{
 				motor[mLift2] = joystick.joy2_y1;
-			}
-			else
-			{
-				motor[mLift] = joystick.joy2_y1;
+				motor[mLift1] = 0;
 			}
 		}
-		else
+		else if(joystick.joy2_y1 < 10)
 		{
-			if(x <= lift_min)
+			if(bottom)
 			{
+				motor[mLift1] = 0;
 				motor[mLift2] = joystick.joy2_y1;
 			}
 			else
 			{
-				motor[mLift2] = joystick.joy2_y1;
+				motor[mLift2] = 0;
+				motor[mLift1] = joystick.joy2_y1;
 			}
 		}
 	}
-	else if(joy1Btn(6))
+	else
 	{
-		if(x >= lift_max)
+		motor[motorA] = 100;
+		if(joystick.joy2_TopHat == 0)
+		{
+			motor[mLift1] = 100;
+		}
+		else if(joystick.joy2_TopHat == 4)
+		{
+			motor[mLift1] = -100;
+		}
+		else if(joy2Btn(5))
 		{
 			motor[mLift2] = 100;
 		}
-		else
-		{
-			motor[mLift] = 100;
-		}
-	}
-	else if(joy1Btn(8))
-	{
-		if(x <= lift_min)
+		else if(joy2Btn(7))
 		{
 			motor[mLift2] = -100;
 		}
 		else
 		{
-			motor[mLift] = -100;
+			motor[mLift2] = 0;
+			motor[mLift1] = 0;
 		}
+	}
+}
+
+void isClicked()
+{
+	if(joy2Btn(11))
+	{
+		if(!prevClicked)
+		{
+			clicked = !clicked;
+			prevClicked = true;
+		}
+
 	}
 	else
 	{
-		motor[mLift] = 0;
+		prevClicked = false;
+	}
+}
+
+void lift()
+{
+	if(joystick.joy2_y1 > 20)
+	{
+		motor[mLift1] = joystick.joy2_y1;
+	}
+	else if(joystick.joy2_y1 < 20)
+	{
+		motor[mLift1] = joystick.joy2_y1;
+	}
+	else
+	{
+		motor[mLift1] = 0;
+	}
+}
+
+void lift2()
+{
+
+	if(joy2Btn(5) || joy1Btn(5))
+	{
+		motor[mLift2] = 100;
+	}
+	else if(joy2Btn(7) || joy1Btn(7))
+	{
+		motor[mLift2] = -100;
+	}
+	else
+	{
+		motor[mLift2] = 0;
 	}
 }
 
@@ -190,27 +259,9 @@ void autoHook()
 	{
 		servo[AutoHook] += 5;
 	}
-	else
-	{
-		servo[AutoHook] += 0;
-	}
 }
 
-void hinge() //moves the hinge of the dispenser up and down
-{
-	if(joy2Btn(6))
-	{
-		motor[mHinge] = 50;
-	}
-	else if(joy2Btn(8))
-	{
-		motor[mHinge] = -50;
-	}
-	else
-	{
-		motor[mHinge] = 0;
-	}
-}
+
 
 void wrist() //moves the wrist part of the dispenser up and down
 {
@@ -245,43 +296,22 @@ void flag() //flag method
 			motor[mFlag] = 0; //stops moving flag attachment
 	}
 }
-
-void lift() //lift method
-{
-	if(abs(joystick.joy2_y1)>10)
-	{
-		motor[mLift] = joystick.joy2_y1; //moves lift up or down based on joystick commands
-	}
-	else if(joy1Btn(6))
-	{
-		motor[mLift] = 100;
-	}
-	else if(joy1Btn(8))
-	{
-		motor[mLift] = -100;
-	}
-	else
-	{
-		motor[mLift] = 0;
-	}
-}
-
 void liftLimit() //sets a limit for the lift; this prevents it from going past that point.
 {
 	if(joy2Btn(10))
 	{
 		limit = true;
-		nMotorEncoder[mLift] = 0;
+		nMotorEncoder[mLift1] = 0;
 	}
 	if(limit)
 	{
-		if(nMotorEncoder[mLift] < 0)
+		if(nMotorEncoder[mLift1] < 0)
 		{
-			while(nMotorEncoder[mLift] < 0)
+			while(nMotorEncoder[mLift1] < 0)
 			{
-				motor[mLift] = 90;
+				motor[mLift1] = 90;
 			}
-			motor[mLift] = 0;
+			motor[mLift1] = 0;
 		}
 		if (joy2Btn(9))
 		{
@@ -302,29 +332,18 @@ void hook() //controls the hook's side-to-side movement.
 	}
 }
 
-void newArm() //controls both parts of the arm at the same time
-{
-	if(joystick.joy2_y2 > 20)
-	{
-		motor[mWrist] = -10;
-		motor[mHinge] = 40;
-	}
-	else if(joystick.joy2_y2 < -20)
-	{
-		motor[mWrist] = 30;
-		motor[mHinge] = -20;
-	}
-	else
-	{
-		//motor[mWrist] = 0;
-		motor[mHinge] = 0;
-	}
-}
-
 task main()
 {
-	servo[sHook] = 127;
+	nMotorEncoder[mLift1] = 0;
+
+	servo[sHook] = 0;
 	servo[AutoHook] = 0;
+	motor[Left] = 0;
+	motor[Right] = 0;
+	motor[mLift1] = 0;
+	motor[mLift2] = 0;
+	motor[mFlag] = 0;
+	motor[mWrist] = 0;
 
 	while(true)
 	{
@@ -334,13 +353,11 @@ task main()
 			sniperCheck();
 			drive();
 			flag();
-			//lift();
 			newLift();
+			isClicked();
 			liftLimit();
 			hook();
 			wrist();
-			hinge();
-			//newArm();
 			autoHook();
 			//all of the above code runs the methods that control all the motorized parts of our robot.
 			wait1Msec(10); //a wait to ensure that multiple signals do not stack and to prevent lag.
@@ -349,12 +366,11 @@ task main()
 		{
 			motor[Left] = 0;
 			motor[Right] = 0;
-			motor[mLift] = 0;
+			motor[mLift1] = 0;
+			motor[mLift2] = 0;
 			motor[mFlag] = 0;
 			motor[mWrist] = 0;
-			motor[mHinge] = 0;
-  		servo[sHook] = 127;
-  		//sets everything to stop if bluetooth  is disconnected.
+			//sets everything to stop if bluetooth  is disconnected.
 		}
 	}
 }
