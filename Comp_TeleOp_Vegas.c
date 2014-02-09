@@ -1,4 +1,4 @@
- #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTServo)
+#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTServo)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S2,     Ultra,          sensorSONAR)
 #pragma config(Sensor, S3,     Ultra2,         sensorSONAR)
