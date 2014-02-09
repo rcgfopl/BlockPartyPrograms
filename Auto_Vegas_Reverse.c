@@ -79,7 +79,7 @@ task main()
 				int b = SensorValue[IR];
 				if(b != i)
 				{
-					//if a different value is sensed, then the original value was not constant; thus, we restart the checking
+					//if a different valu\e is sensed, then the original value was not constant; thus, we restart the checking
 					//to try and gete a constant value.
 					i = 0;
 					a = 0;

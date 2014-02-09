@@ -115,7 +115,7 @@ task main()
 		wait1Msec(500);
 
 		//turns towards the ramp
-		ModTurn(2700, 100, right);
+		ModTurn(2100, 100, right);
 		motor[Right] = 0;
 		motor[Left] = 0;
 		wait1Msec(500);
@@ -126,7 +126,7 @@ task main()
 	else if (beacon == 2) //beacon was on second box
 	{
 		//goes backwards from the box
-		ModBackward(2900,50);
+		ModBackward(3400,50);
 		motor[Right] = 0;
 		motor[Left] = 0;
 		wait1Msec(500);
@@ -144,7 +144,7 @@ task main()
 		wait1Msec(500);
 
 		//turns towards the ramp
-		ModTurn(2700, 100, right);
+		ModTurn(2100, 100, right);
 		motor[Right] = 0;
 		motor[Left] = 0;
 		wait1Msec(500);
@@ -173,7 +173,7 @@ task main()
 		wait1Msec(500);
 
 		//turns towards the ramp
-		ModTurn(2700,100,left);
+		ModTurn(2100,100,left);
 		motor[Right] = 0;
 		motor[Left] = 0;
 		wait1Msec(500);
@@ -202,7 +202,7 @@ task main()
 		wait1Msec(500);
 
 		//turns towards the ramp
-		ModTurn(2700,100,left);
+		ModTurn(2100,100,left);
 		motor[Right] = 0;
 		motor[Left] = 0;
 		wait1Msec(500);
