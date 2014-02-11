@@ -1,6 +1,12 @@
 #include "drivers/hitechnic-sensormux.h"
 #include "drivers/lego-ultrasound.h"
 
+// Direction representing a left (counter-clockwise) turn
+// This is used as a parameter for turning functions.
+#define left 1
+// Direction representing a right (clockwise) turn
+// This is used as a parameter for turning functions.
+#define right -1
 
 //various methods to move forward.
 
@@ -460,7 +466,7 @@ void startSelect()
 // power: The maximum motor power at which the robot will move. May be negative to go backwards.
 void straightRamp(int dist, int power)
 {
-  int encVal = nMotorEncoder[Left] = 0; // reset the encoder
+  int encVal = nMotorEncoder[Right] = 0; // reset the encoder
 
   while (encVal < dist) { // loop while the robot has not yet traversed the given distance
     float mStart = (float)(100 - RAMP_MIN) / RAMP_DIST; // calculate the slope of the starting ramp
@@ -475,6 +481,37 @@ void straightRamp(int dist, int power)
     motor[Left] = motor[Right] = power; // set the drive motors to the final calculated power value
 
     wait10Msec(1); // wait 10 msecs to allow the robot to move a bit before repeating
-    encVal = abs(nMotorEncoder[Left]); // get the current traversed distance on the encoder
+    encVal = abs(nMotorEncoder[Right]); // get the current traversed distance on the encoder
+  }
+}
+
+// Moves the robot straight for the given encoder distance, ramping up and down to reduce skipping
+// Ramp up based on encoder distance, going from 25% to 100% over the first 1600 degrees.
+// Ramp down based on encoder distance, going from 25% to 0% over the last 1600 degrees.
+// Ramps are cut off at the given power, without changing the ramp slope; in other words,
+// the lower the power, the shorter the ramp time.
+// dist: The encoder distance which the robot will move. Must be positive.
+// power: The maximum motor power at which the robot will move. Must be positive.
+// dir: The direction, left or right. 
+void turnRamp(int dist, int power, int dir)
+{
+  power *= dir; // incorporate the turning direction into the power
+
+  int encVal = nMotorEncoder[Right] = 0; // reset the encoder
+
+  while (encVal < dist) { // loop while the robot has not yet traversed the given distance
+    float mStart = (float)(100 - RAMP_MIN) / RAMP_DIST; // calculate the slope of the starting ramp
+    int rampStart = mStart * encVal + RAMP_MIN; // calculate the power value of the starting ramp
+
+    float mEnd = (float)(100 - RAMP_MIN) / (- RAMP_DIST); // calculate the slope of the ending ramp
+    int rampEnd = m * (encVal - dist) + RAMP_MIN; // calculate the power value of the ending ramp
+
+    if (rampStart < power) power = rampStart; // find the minimum power value between the given power and the starting ramp
+    if (rampEnd < power) power = rampEnd; // find the minimum power value between the given power and the ending ramp
+
+    motor[Left] = - (motor[Right] = power); // set the drive motors to the final calculated power value
+
+    wait10Msec(1); // wait 10 msecs to allow the robot to move a bit before repeating
+    encVal = abs(nMotorEncoder[Right]); // get the current traversed distance on the encoder
   }
 }
