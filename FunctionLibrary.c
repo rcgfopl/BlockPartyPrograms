@@ -483,6 +483,8 @@ void straightRamp(int dist, int power)
     wait10Msec(1); // wait 10 msecs to allow the robot to move a bit before repeating
     encVal = abs(nMotorEncoder[Right]); // get the current traversed distance on the encoder
   }
+
+  motor[Left] = motor[Right] = 0; // halt both drive motors now that we're done
 }
 
 // Moves the robot straight for the given encoder distance, ramping up and down to reduce skipping
@@ -514,4 +516,6 @@ void turnRamp(int dist, int power, int dir)
     wait10Msec(1); // wait 10 msecs to allow the robot to move a bit before repeating
     encVal = abs(nMotorEncoder[Right]); // get the current traversed distance on the encoder
   }
+
+  motor[Left] = motor[Right] = 0; // halt both drive motors now that we're done
 }
