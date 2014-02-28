@@ -153,8 +153,9 @@ void newLift()
 {
 	if(!clicked) // if on automatic mode for the slide lift
 	{
-		motor[motorA] = 0; // halt the lower motor
-		if(nMotorEncoder[mLift1] >= thresh) // if the lower level is fully extended
+		//motor[motorA] = 0;
+	servo[AutoHook] = 0;
+		if(nMotorEncoder[mLift1] >= thresh)
 		{
 			extended = true; // update the flags to show that the lower level is fully extended
 			bottom = false; // update the flags to show that the lower level is fully extended
@@ -164,7 +165,7 @@ void newLift()
 			bottom = true; // update the flags to show that the lower level is fully lowered
 			extended = false; // update the flags to show that the lower level is fully lowered
 		}
-		if(joystick.joy2_y1 > 10) // if the joystick is set to raise the slide
+		if(joystick.joy2_y1 > 25)
 		{
 			if(bottom) // if the slide is on the bottom
 			{
@@ -177,7 +178,7 @@ void newLift()
 				motor[mLift1] = 0; // halt the lower level motor
 			}
 		}
-		else if(joystick.joy2_y1 < 10) // otherwise, if the joystick is set to lower the slide
+		else if(joystick.joy2_y1 < 25)
 		{
 			if(bottom) // if the slide is on the bottom
 			{
@@ -190,9 +191,12 @@ void newLift()
 				motor[mLift1] = joystick.joy2_y1; // lower the lower level motor
 			}
 		}
-	} else { // if on manual override
-		motor[motorA] = 100; // power the lower level motor
-		if(joystick.joy2_TopHat == 0) // if the top button on the pad is pressed
+	}
+	else
+	{
+		//motor[motorA] = 100;
+		servo[AutoHook] = 100;
+		if(joystick.joy2_TopHat == 0)
 		{
 			motor[mLift1] = 100; // raise the lower level motor
 		}

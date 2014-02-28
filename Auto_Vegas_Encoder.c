@@ -97,7 +97,7 @@ task main()
 			else if(beacon == 1)
 			{
 				//the distance to get to the second beacon
-				ModForward(1100,35);
+				ModForward(900,35);
 				motor[Right] = 0;
 				motor[Left] = 0;
 				wait1Msec(1000);
@@ -105,7 +105,7 @@ task main()
 			else if(beacon == 2)
 			{
 				//the distance to get to the third beacon
-				ModForward(1900,35);
+				ModForward(1600,35);
 				motor[Right] = 0;
 				motor[Left] = 0;
 				wait1Msec(1000);

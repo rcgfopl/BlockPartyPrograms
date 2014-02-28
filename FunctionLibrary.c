@@ -339,46 +339,54 @@ void ModTurn(int distance, int power, int dir)
 
 // Allows us to pick our choice of autonomous program.
 // Uses a GUI and the NXT buttons.
-int picker() 
+int picker()
 {
-	int x = 1;
-	int y = 0;
-	if(y == 0)
+	while(true)
 	{
-		while(nNxtButtonPressed != 3)
+		wait1Msec(500);
+		int x = 1;
+		int y = 0;
+		if(y == 0)
 		{
-			nxtDisplayCenteredTextLine(2,"Hello There! This is the Autonomous Chooser.");
-		 	nxtDisplayCenteredBigTextLine(4,"Please pick the autonomous program number you would like to run.");
-   	}
-   	while(nNxtButtonPressed == 3) {}
-   	eraseDisplay();
-   	y++;
- 	}
-  if (y == 1)
-  {
-			nxtDisplayCenteredTextLine(5,"%d",x);
-		if(nNxtButtonPressed == 1)
-		{
-			if(x == 4)
-				{x=1;}
-			else
-	 			{x++;}
+			while(nNxtButtonPressed != 3)
+			{
+				nxtDisplayCenteredTextLine(2,"Hello There! This is the Autonomous Chooser.");
+			 	nxtDisplayCenteredBigTextLine(4,"Please pick the beacon you would like to go to.");
+	   	}
+	   	while(nNxtButtonPressed == 3) {}
+	   	eraseDisplay();
+	   	wait1Msec(500);
+	   	y++;
+	 	}
+	  while (y > 0)
+	  {
+			nxtDisplayCenteredTextLine(2,"%d",x);
+			if(nNxtButtonPressed == 1)
+			{
+				wait1Msec(500);
+				if(x == 4)
+					{x=1;}
+				else
+		 			{x++;}
+			}
+			else if(nNxtButtonPressed == 2)
+			{
+				wait1Msec(500);
+				if(x == 1)
+					{x=4;}
+				else
+		 			{x--;}
+			}
+			else if(nNxtButtonPressed == 3)
+			{
+				wait1Msec(500);
+		 		return x;
+			}
+			eraseDisplay();
 		}
-		else if(nNxtButtonPressed == 2)
-		{
-			if(x == 1)
-				{x=4;}
-			else
-	 			{x--;}
-		}
-		else if(nNxtButtonPressed == 3)
-		{
-	 		return x;
-		}
-		eraseDisplay();
 	}
 	eraseDisplay();
-	nxtDisplayCenteredTextLine(4, "Oh my. Why did we get here? Something went wrong.");
+	nxtDisplayCenteredTextLine(2, "Oh my. Why did we get here? Something went wrong.");
 	wait1Msec(100);
 	return 1;
 
