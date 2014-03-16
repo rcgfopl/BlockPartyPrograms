@@ -32,7 +32,7 @@
 // the minimum lift power
 #define lift_min 0
 // the threshold of when the lift is considered down
-#define thresh 4700
+#define thresh 4200
 
 // whether sniper mode is currently enabled
 // Sniper mode allows the drivers to slow down the robot for more precise movements.
@@ -154,7 +154,7 @@ void newLift()
 	if(!clicked) // if on automatic mode for the slide lift
 	{
 		//motor[motorA] = 0;
-	servo[AutoHook] = 0;
+	servo[AutoHook] = 255;
 		if(nMotorEncoder[mLift1] >= thresh)
 		{
 			extended = true; // update the flags to show that the lower level is fully extended
@@ -195,7 +195,7 @@ void newLift()
 	else
 	{
 		//motor[motorA] = 100;
-		servo[AutoHook] = 100;
+		servo[AutoHook] = 150;
 		if(joystick.joy2_TopHat == 0)
 		{
 			motor[mLift1] = 100; // raise the lower level motor

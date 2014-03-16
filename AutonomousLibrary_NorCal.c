@@ -61,32 +61,32 @@ void Auto_Encoder()
 			{
 				//the distance to get to the first beacon
 				Forward(2600,35);
-				motor[Right] = 0;
-				motor[Left] = 0;
+				motor[mRight] = 0;
+				motor[mLeft] = 0;
 				wait1Msec(1000);
 			}
 			else if(beacon == 1)
 			{
 				//the distance to get to the second beacon
 				Forward(700,35);
-				motor[Right] = 0;
-				motor[Left] = 0;
+				motor[mRight] = 0;
+				motor[mLeft] = 0;
 				wait1Msec(1000);
 			}
 			else if(beacon == 2)
 			{
 				//the distance to get to the third beacon
 				Forward(2100,35);
-				motor[Right] = 0;
-				motor[Left] = 0;
+				motor[mRight] = 0;
+				motor[mLeft] = 0;
 				wait1Msec(1000);
 			}
 			else if(beacon == 3)
 			{
 				//the distance to get to the fourth beacon
 				Forward(600,35);
-				motor[Right] = 0;
-				motor[Left] = 0;
+				motor[mRight] = 0;
+				motor[mLeft] = 0;
 				wait1Msec(1000);
 			}
 			beacon++;
@@ -106,26 +106,26 @@ void Auto_Encoder()
 	{
 		//goes backwards from the box
 		Backward(2160,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1640, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(4000,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(1900, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -135,26 +135,26 @@ void Auto_Encoder()
 	{
 		//goes backwards from the box
 		Backward(3400,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1640, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(4000,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(1600, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -164,26 +164,26 @@ void Auto_Encoder()
 	{
 		//goes forward from the box
 		Forward(2700,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1840, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(4000,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(2100,100,left);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -193,26 +193,26 @@ void Auto_Encoder()
 	{
 		//goes forward from the box
 		Forward(1360,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1840, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(3900,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(2200,100,left);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -227,32 +227,32 @@ void Hardcoded_Autonomous()
 	{
 		//the distance to get to the first beacon
 		Forward(2600,35);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(1000);
 	}
 	else if(beacon == 2) //going to the second beacon
 	{
 		//the distance to get to the second beacon
 		Forward(3400,35);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(1000);
 	}
 	else if(beacon == 3) //going to the third beacon
 	{
 		//the distance to get to the third beacon
 		Forward(5900,35);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(1000);
 	}
 	else if(beacon == 4) //going to the fourth beacon
 	{
 		//the distance to get to the fourth beacon
 		Forward(6900,35);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(1000);
 	}
 
@@ -269,26 +269,26 @@ void Hardcoded_Autonomous()
 	{
 		//goes backwards from the box
 		Backward(2160,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1640, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(4000,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(1800, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -298,26 +298,26 @@ void Hardcoded_Autonomous()
 	{
 		//goes backwards from the box
 		Backward(3400,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1640, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(4000,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(1600, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -327,26 +327,26 @@ void Hardcoded_Autonomous()
 	{
 		//goes forward from the box
 		Forward(2700,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1840, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(4000,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(2100,100,left);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -356,26 +356,26 @@ void Hardcoded_Autonomous()
 	{
 		//goes forward from the box
 		Forward(1360,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1840, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(3900,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(2000,100,left);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -421,32 +421,32 @@ void Auto_Front_Ramp()
 			{
 				//the distance to get to the first beacon
 				Forward(2600,35);
-				motor[Right] = 0;
-				motor[Left] = 0;
+				motor[mRight] = 0;
+				motor[mLeft] = 0;
 				wait1Msec(1000);
 			}
 			else if(beacon == 1)
 			{
 				//the distance to get to the second beacon
 				Forward(700,35);
-				motor[Right] = 0;
-				motor[Left] = 0;
+				motor[mRight] = 0;
+				motor[mLeft] = 0;
 				wait1Msec(1000);
 			}
 			else if(beacon == 2)
 			{
 				//the distance to get to the third beacon
 				Forward(2100,35);
-				motor[Right] = 0;
-				motor[Left] = 0;
+				motor[mRight] = 0;
+				motor[mLeft] = 0;
 				wait1Msec(1000);
 			}
 			else if(beacon == 3)
 			{
 				//the distance to get to the fourth beacon
 				Forward(600,35);
-				motor[Right] = 0;
-				motor[Left] = 0;
+				motor[mRight] = 0;
+				motor[mLeft] = 0;
 				wait1Msec(1000);
 			}
 			beacon++;
@@ -466,26 +466,26 @@ void Auto_Front_Ramp()
 	{
 		//goes forward from the box
 		Forward(5600,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1640, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(4000,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(1900,100,left);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -495,26 +495,26 @@ void Auto_Front_Ramp()
 	{
 		//goes forward from the box
 		Forward(4700,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1640, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(4000,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(1600,100,left);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -524,26 +524,26 @@ void Auto_Front_Ramp()
 	{
 		//goes forward from the box
 		Forward(2700,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1840, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(4000,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(2100,100,left);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -553,26 +553,26 @@ void Auto_Front_Ramp()
 	{
 		//goes forward from the box
 		Forward(1360,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1840, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(3900,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(2000,100,left);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -618,32 +618,32 @@ void Auto_Back_Ramp()
 			{
 				//the distance to get to the first beacon
 				Forward(2600,35);
-				motor[Right] = 0;
-				motor[Left] = 0;
+				motor[mRight] = 0;
+				motor[mLeft] = 0;
 				wait1Msec(1000);
 			}
 			else if(beacon == 1)
 			{
 				//the distance to get to the second beacon
 				Forward(700,35);
-				motor[Right] = 0;
-				motor[Left] = 0;
+				motor[mRight] = 0;
+				motor[mLeft] = 0;
 				wait1Msec(1000);
 			}
 			else if(beacon == 2)
 			{
 				//the distance to get to the third beacon
 				Forward(2100,35);
-				motor[Right] = 0;
-				motor[Left] = 0;
+				motor[mRight] = 0;
+				motor[mLeft] = 0;
 				wait1Msec(1000);
 			}
 			else if(beacon == 3)
 			{
 				//the distance to get to the fourth beacon
 				Forward(600,35);
-				motor[Right] = 0;
-				motor[Left] = 0;
+				motor[mRight] = 0;
+				motor[mLeft] = 0;
 				wait1Msec(1000);
 			}
 			beacon++;
@@ -663,26 +663,26 @@ void Auto_Back_Ramp()
 	{
 		//goes backwards from the box
 		Backward(2660,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1640, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(4000,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(1900, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -692,26 +692,26 @@ void Auto_Back_Ramp()
 	{
 		//goes backwards from the box
 		Backward(3900,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1640, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(4000,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(1900, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -721,26 +721,26 @@ void Auto_Back_Ramp()
 	{
 		//goes backwards from the box
 		Backward(5600,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1640, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(4000,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(1900, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -750,26 +750,26 @@ void Auto_Back_Ramp()
 	{
 		//goes backwards from the box
 		Backward(6600,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns to be parallel to the ramp
 		Turn(1640, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes backwards and towards the ramp
 		Backward(3900,50);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//turns towards the ramp
 		Turn(1600, 100, right);
-		motor[Right] = 0;
-		motor[Left] = 0;
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
@@ -791,30 +791,34 @@ void Hardcoded_Reverse()
 
 	//goes forward from the box
 	Forward(1360,50);
-	motor[Right] = 0;
-	motor[Left] = 0;
+	motor[mRight] = 0;
+	motor[mLeft] = 0;
 	wait1Msec(500);
 
 	//turns to be parallel to the ramp
 	Turn(1840, 100, right);
-	motor[Right] = 0;
-	motor[Left] = 0;
+	motor[mRight] = 0;
+	motor[mLeft] = 0;
 	wait1Msec(500);
 
 	//goes backwards and towards the ramp
 	Backward(3900,50);
-	motor[Right] = 0;
-	motor[Left] = 0;
+	motor[mRight] = 0;
+	motor[mLeft] = 0;
 	wait1Msec(500);
 
 	//turns towards the ramp
 	Turn(2000,100,left);
-	motor[Right] = 0;
-	motor[Left] = 0;
+	motor[mRight] = 0;
+	motor[mLeft] = 0;
 	wait1Msec(500);
 
 	//goes onto the ramp
 	Backward(4500,100);
+}
+
+void IR_Tester()
+{
 }
 
 void Reverse_Autonomous()

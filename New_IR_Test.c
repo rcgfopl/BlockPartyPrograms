@@ -7,10 +7,10 @@
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  mtr_S1_C1_1,     mLift2,        tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C1_2,     yolo2,         tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C1_2,     mRight,        tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C2_1,     mLift1,        tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C2_2,     mFlag,         tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C3_1,     Left,          tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C3_1,     mLeft,         tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_2,     mWrist,        tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C4_1,    AutoHook,             tServoStandard)
 #pragma config(Servo,  srvo_S1_C4_2,    sHook,                tServoStandard)
@@ -42,7 +42,8 @@ int max = 5;
 int beacon = 0;
 //holds the IR sensor value
 int i = 0;
-
+//holds additional distance that needs to be traveled
+int additional = 0;
 
 // standard library for talking to Samantha FCS
 #include "JoystickDriver.c"
@@ -51,14 +52,55 @@ int i = 0;
 //our team-built Autonomous library
 #include "AutonomousLibrary_NorCal.c"
 
+
 task main()
 {
-//	selectTime();
-//	startSelect();
-//	if(waitSelected){waitForStart();}
-//	wait1Msec(waitTime*1000);
-	//Forward(5000, 100);
-motor[yolo2] = 100;
-//motor[mRight] = 100;
-wait1Msec(1000);
+	wait1Msec(2000);
+	while(i != 5)
+	{
+		for(int a = 0; a <50; a++)
+		{
+			if(a == 0)
+			{
+				//gets original ir value
+				i  = SensorValue[IR];
+			}
+			else
+			{
+				int b = SensorValue[IR];
+				if(b != i)
+				{
+					//if a different value is sensed, then the original value was not constant; thus, we restart the checking
+					//to try and gete a constant value.
+					i = 0;
+					a = 0;
+				}
+			}
+		}
+		motor[mLeft] = 100;
+		motor[mRight] = 100;
+	}
+	Forward(additional, 100);
+	int distance = nMotorEncoder[mLeft];
+	Backward(distance+additional, 100);
+	//turns to be parallel to the ramp
+	Turn(1640, 100, right);
+	motor[mRight] = 0;
+	motor[mLeft] = 0;
+	wait1Msec(500);
+
+	//goes backwards and towards the ramp
+	Backward(4000,50);
+	motor[mRight] = 0;
+	motor[mLeft] = 0;
+	wait1Msec(500);
+
+	//turns towards the ramp
+	Turn(1600, 100, right);
+	motor[mRight] = 0;
+	motor[mLeft] = 0;
+	wait1Msec(500);
+
+	//goes onto the ramp
+	Backward(4500,100);
 }

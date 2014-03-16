@@ -7,13 +7,13 @@
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  mtr_S1_C1_1,     mLift2,        tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C1_2,     yolo2,         tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C1_2,     mRight,        tmotorTetrix, openLoop, reversed, encoder)
 #pragma config(Motor,  mtr_S1_C2_1,     mLift1,        tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C2_2,     mFlag,         tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C3_1,     Left,          tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C3_1,     mLeft,         tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_2,     mWrist,        tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C4_1,    AutoHook,             tServoStandard)
-#pragma config(Servo,  srvo_S1_C4_2,    sHook,                tServoStandard)
+#pragma config(Servo,  srvo_S1_C4_2,    servo2,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_3,    servo3,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_4,    servo4,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_5,    servo5,               tServoNone)
@@ -37,11 +37,12 @@ string wait = "Yes";
 //holds which  autonomous program we will be running
 int programCounter = 1;
 //holds the  maximum amount of autonomous programs we can run
-int max = 5;
+int max = 6;
 //holds which beacon the robot is at
 int beacon = 0;
 //holds the IR sensor value
 int i = 0;
+int additional = 0;
 
 
 // standard library for talking to Samantha FCS
@@ -53,12 +54,47 @@ int i = 0;
 
 task main()
 {
-//	selectTime();
-//	startSelect();
-//	if(waitSelected){waitForStart();}
-//	wait1Msec(waitTime*1000);
-	//Forward(5000, 100);
-motor[yolo2] = 100;
-//motor[mRight] = 100;
-wait1Msec(1000);
+	int distance;
+	nMotorEncoder[mRight] = 0;
+
+	while(SensorValue(IR) != 5)
+	{
+		motor[mLeft] = 30;
+		motor[mRight] = 30;
+	}
+	motor[mLeft] = 0;
+	motor[mRight] = 0;
+	wait1Msec(500);
+	distance = nMotorEncoder[mRight];
+	Forward(100, 30);
+
+	wait1Msec(500);
+
+	servo[AutoHook] = 0;
+	wait1Msec(1000);
+	servo[AutoHook] = 250;
+	wait1Msec(500);
+
+	Backward(distance+100, 30);
+	wait1Msec(500);
+
+	Turn(1640, 100, right);
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
+		wait1Msec(500);
+
+		//goes backwards and towards the ramp
+		Backward(4000,50);
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
+		wait1Msec(500);
+
+		//turns towards the ramp
+		Turn(1900, 100, right);
+		motor[mRight] = 0;
+		motor[mLeft] = 0;
+		wait1Msec(500);
+
+		//goes onto the ramp
+		Backward(4500,100);
 }
