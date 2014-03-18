@@ -1,5 +1,7 @@
+//encoder value for distance from one side to the other while parallel to the boxes in our starting position.
 #define FrontVal 8800
 
+// Allows us to cycle through numbers that will allow us to pick an option in a ProgramChooser.
 void counter()
 {
 	if(nNxtButtonPressed == 1)
@@ -30,6 +32,8 @@ void counter()
 	}
 }
 
+// Moves continuously forward, then stops in front of the box with the IR beacon and deposits the cube in it.
+// It then ends on the side of the ramp that is closest to it.
 void AutoNoStop_F()
 {
 	int distance=0;
@@ -119,6 +123,8 @@ void AutoNoStop_F()
 	}
 }
 
+// Moves continuously forward, then stops in front of the box with the IR beacon and deposits the cube in it.
+// It then ends on the front of the ramp.
 void AutoNSF_Front()
 {
 	int distance=0;
@@ -181,6 +187,8 @@ void AutoNSF_Front()
 	Backward(4500,100);
 }
 
+// Moves continuously forward, then stops in front of the box with the IR beacon and deposits the cube in it.
+// It then ends on the back of the ramp.
 void AutoNSF_Back()
 {
 	int distance=0;
@@ -242,6 +250,8 @@ void AutoNSF_Back()
 	Backward(4500,100);
 }
 
+// Moves continuously backwards, then stops in front of the box with the IR beacon and deposits the cube in it.
+// It then ends on the side of the ramp that is closest to it.
 void AutoNoStop_B()
 {
 	int distance=0;
@@ -332,6 +342,8 @@ void AutoNoStop_B()
 	}
 }
 
+// Moves continuously backwards, then stops in front of the box with the IR beacon and deposits the cube in it.
+// It then ends on the front side of the ramp.
 void AutoNSB_Front()
 {
 	int distance=0;
@@ -393,6 +405,8 @@ void AutoNSB_Front()
 	Forward(4500,100);
 }
 
+// Moves continuously backwards, then stops in front of the box with the IR beacon and deposits the cube in it.
+// It then ends on the back side of the ramp.
 void AutoNSB_Back()
 {
 	int distance=0;

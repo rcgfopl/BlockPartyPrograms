@@ -1,3 +1,4 @@
+// Allows us to cycle through numbers that will allow us to pick an option in a ProgramChooser.
 void counter()
 {
 	if(nNxtButtonPressed == 1)
@@ -28,6 +29,9 @@ void counter()
 	}
 }
 
+// Regular Autonomous Method that goes forward and stops in front of each beacon.
+// The robot then deposits the cube into the box above the beacon.
+// Finally, the robot ends on the side of the ramp that is closest to it.
 void Auto_Encoder()
 {
 	//loops until the sensor finds the beacon or until it gets to the final beacon.
@@ -220,6 +224,8 @@ void Auto_Encoder()
 	}
 }
 
+// Autonomous method that lets us pick which box to go to, then deposits the cube in that box.
+// The robot then travels to the closest side of the ramp.
 void Hardcoded_Autonomous()
 {
 	beacon = picker(); //assigns the beacon we want to go to to this value.
@@ -383,6 +389,9 @@ void Hardcoded_Autonomous()
 	}
 }
 
+// Regular Autonomous Method that goes forward and stops in front of each beacon.
+// The robot then deposits the cube into the box above the beacon.
+// Finally, the robot ends on the front side of the ramp.
 void Auto_Front_Ramp()
 {
 	//holds which beacon the robot is at
@@ -580,6 +589,9 @@ void Auto_Front_Ramp()
 	}
 }
 
+// Regular Autonomous Method that goes forward and stops in front of each beacon.
+// The robot then deposits the cube into the box above the beacon.
+// Finally, the robot ends on the back of the ramp.
 void Auto_Back_Ramp()
 {
 	 //holds which beacon the robot is at
@@ -777,6 +789,7 @@ void Auto_Back_Ramp()
 	}
 }
 
+//Deposits the cube in the first basket when going reverse, then ends on the front of the ramp.
 void Hardcoded_Reverse()
 {
 	//goes  in front  of box
@@ -815,20 +828,4 @@ void Hardcoded_Reverse()
 
 	//goes onto the ramp
 	Backward(4500,100);
-}
-
-void IR_Tester()
-{
-}
-
-void Reverse_Autonomous()
-{
-}
-
-void Reverse_Auto_Front_Ramp()
-{
-}
-
-void Reverse_Auto_Back_Ramp()
-{
 }
