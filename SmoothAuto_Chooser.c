@@ -13,7 +13,7 @@
 #pragma config(Motor,  mtr_S1_C3_1,     mLeft,         tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_2,     mWrist,        tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C4_1,    AutoHook,             tServoStandard)
-#pragma config(Servo,  srvo_S1_C4_2,    servo2,               tServoNone)
+#pragma config(Servo,  srvo_S1_C4_2,    sHook,                tServoStandard)
 #pragma config(Servo,  srvo_S1_C4_3,    servo3,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_4,    servo4,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_5,    servo5,               tServoNone)
@@ -26,6 +26,8 @@
 * To box 3(forward) 6657      *
 * To box 2(backward) -2012    *
 * To box 3(backward)  -4980   *
+* To box 4(forward) 7641      *
+* To box 4(backward) -6301    *
 ******************************/
 
 #define left 1
@@ -56,6 +58,7 @@ int max = 6;
 
 task main()
 {
+	servo[sHook] = 0;
 	 selectTime();
 	 startSelect();
 	 while(true)

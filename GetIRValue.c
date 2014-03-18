@@ -68,8 +68,8 @@ task main()
 
 	while(SensorValue(IR) != 5)
 	{
-		motor[mLeft] = 30;
-		motor[mRight] = 30;
+		motor[mLeft] = -30;
+		motor[mRight] = -30;
 	}
 	motor[mLeft] = 0;
 	motor[mRight] = 0;

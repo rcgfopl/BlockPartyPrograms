@@ -36,15 +36,15 @@ void AutoNoStop_F()
 	int add=0;
 	nMotorEncoder[mRight] = 0;
 
-	while(SensorValue(IR) != 5)
+	while(SensorValue(IR) != 5 && distance < 7700)
 	{
 		motor[mLeft] = 30;
 		motor[mRight] = 30;
+		distance = nMotorEncoder[mRight];
 	}
 	motor[mLeft] = 0;
 	motor[mRight] = 0;
 	wait1Msec(500);
-	distance = nMotorEncoder[mRight];
 	if(abs(distance) <= 5000)
 	{
 			add = 300;
@@ -71,9 +71,8 @@ void AutoNoStop_F()
 	if(abs(distance) <= 5000)
 	{
 		Backward(abs(distance) + add, 30);
-		wait1Msec(500);
 
-		Turn(1640, 100, right);
+		Turn(1400, 100, right);
 		motor[mRight] = 0;
 		motor[mLeft] = 0;
 		wait1Msec(500);
@@ -85,7 +84,7 @@ void AutoNoStop_F()
 		wait1Msec(500);
 
 		//turns towards the ramp
-		Turn(1900, 100, right);
+		Turn(1800, 100, right);
 		motor[mRight] = 0;
 		motor[mLeft] = 0;
 		wait1Msec(500);
@@ -95,10 +94,10 @@ void AutoNoStop_F()
 	}
 	else
 	{
-		Forward(FrontVal - abs(distance) - add, 30);
+		Forward(FrontVal - abs(distance) - add-400, 30);
 
 		//turns to be parallel to the ramp
-		Turn(1800, 100, right);
+		Turn(2000, 100, right);
 		motor[mRight] = 0;
 		motor[mLeft] = 0;
 		wait1Msec(500);
@@ -110,7 +109,7 @@ void AutoNoStop_F()
 		wait1Msec(500);
 
 		//turns towards the ramp
-		Turn(1850,100,left);
+		Turn(2000,100,left);
 		motor[mRight] = 0;
 		motor[mLeft] = 0;
 		wait1Msec(500);
@@ -126,15 +125,15 @@ void AutoNSF_Front()
 	int add=0;
 	nMotorEncoder[mRight] = 0;
 
-	while(SensorValue(IR) != 5)
+	while(SensorValue(IR) != 5 && distance < 7700)
 	{
 		motor[mLeft] = 30;
 		motor[mRight] = 30;
+		distance = nMotorEncoder[mRight];
 	}
 	motor[mLeft] = 0;
 	motor[mRight] = 0;
 	wait1Msec(500);
-	distance = nMotorEncoder[mRight];
 	if(abs(distance) <= 5000)
 	{
 			add = 300;
@@ -158,10 +157,10 @@ void AutoNSF_Front()
 	servo[AutoHook] = 250;
 	wait1Msec(500);
 
-	Forward(FrontVal - abs(distance) - add, 30);
+	Forward(FrontVal - abs(distance) - add-400, 30);
 
 	//turns to be parallel to the ramp
-	Turn(1800, 100, right);
+	Turn(2000, 100, right);
 	motor[mRight] = 0;
 	motor[mLeft] = 0;
 	wait1Msec(500);
@@ -173,7 +172,7 @@ void AutoNSF_Front()
 	wait1Msec(500);
 
 	//turns towards the ramp
-	Turn(2200,100,left);
+	Turn(2000,100,left);
 	motor[mRight] = 0;
 	motor[mLeft] = 0;
 	wait1Msec(500);
@@ -188,15 +187,15 @@ void AutoNSF_Back()
 	int add=0;
 	nMotorEncoder[mRight] = 0;
 
-	while(SensorValue(IR) != 5)
+	while(SensorValue(IR) != 5 && distance < 7700)
 	{
 		motor[mLeft] = 30;
 		motor[mRight] = 30;
+		distance = nMotorEncoder[mRight];
 	}
 	motor[mLeft] = 0;
 	motor[mRight] = 0;
 	wait1Msec(500);
-	distance = nMotorEncoder[mRight];
 	if(abs(distance) <= 5000)
 	{
 			add = 300;
@@ -221,9 +220,8 @@ void AutoNSF_Back()
 	wait1Msec(500);
 
 	Backward(abs(distance) + add, 30);
-	wait1Msec(500);
 
-	Turn(1640, 100, right);
+	Turn(1400, 100, right);
 	motor[mRight] = 0;
 	motor[mLeft] = 0;
 	wait1Msec(500);
@@ -235,7 +233,7 @@ void AutoNSF_Back()
 	wait1Msec(500);
 
 	//turns towards the ramp
-	Turn(1900, 100, right);
+	Turn(1800, 100, right);
 	motor[mRight] = 0;
 	motor[mLeft] = 0;
 	wait1Msec(500);
@@ -250,15 +248,16 @@ void AutoNoStop_B()
 	int add=0;
 	nMotorEncoder[mRight] = 0;
 
-	while(SensorValue(IR) != 5)
+	while(SensorValue(IR) != 5 && abs(distance) < 6200)
 	{
 		motor[mLeft] = -30;
 		motor[mRight] = -30;
+		distance = nMotorEncoder[mRight];
 	}
 	motor[mLeft] = 0;
 	motor[mRight] = 0;
 	wait1Msec(500);
-	distance = nMotorEncoder[mRight];
+
 	if(abs(distance) <= 3500)
 	{
 			add = 300;
@@ -285,9 +284,8 @@ void AutoNoStop_B()
 	if(abs(distance) <= 3500)
 	{
 		Forward(abs(distance) + add, 30);
-		wait1Msec(500);
 
-		Turn(1800, 100, left);
+		Turn(2000, 100, left);
 		motor[mRight] = 0;
 		motor[mLeft] = 0;
 		wait1Msec(500);
@@ -299,7 +297,7 @@ void AutoNoStop_B()
 		wait1Msec(500);
 
 		//turns towards the ramp
-		Turn(1900, 100, left);
+		Turn(2000, 100, left);
 		motor[mRight] = 0;
 		motor[mLeft] = 0;
 		wait1Msec(500);
@@ -309,10 +307,10 @@ void AutoNoStop_B()
 	}
 	else
 	{
-		Backward(FrontVal - abs(distance) - add, 30);
+		Backward(FrontVal - abs(distance) - add-400, 30);
 
 		//turns to be parallel to the ramp
-		Turn(1800, 100, left);
+		Turn(1600, 100, left);
 		motor[mRight] = 0;
 		motor[mLeft] = 0;
 		wait1Msec(500);
@@ -324,7 +322,7 @@ void AutoNoStop_B()
 		wait1Msec(500);
 
 		//turns towards the ramp
-		Turn(2200,100,right);
+		Turn(1800,100,right);
 		motor[mRight] = 0;
 		motor[mLeft] = 0;
 		wait1Msec(500);
@@ -340,15 +338,15 @@ void AutoNSB_Front()
 	int add=0;
 	nMotorEncoder[mRight] = 0;
 
-	while(SensorValue(IR) != 5)
+	while(SensorValue(IR) != 5 && abs(distance) < 6200)
 	{
 		motor[mLeft] = -30;
 		motor[mRight] = -30;
+		distance = nMotorEncoder[mRight];
 	}
 	motor[mLeft] = 0;
 	motor[mRight] = 0;
 	wait1Msec(500);
-	distance = nMotorEncoder[mRight];
 	if(abs(distance) <= 3500)
 	{
 			add = 300;
@@ -373,9 +371,8 @@ void AutoNSB_Front()
 	wait1Msec(500);
 
 	Forward(abs(distance) + add, 30);
-	wait1Msec(500);
 
-	Turn(1800, 100, left);
+	Turn(2000, 100, left);
 	motor[mRight] = 0;
 	motor[mLeft] = 0;
 	wait1Msec(500);
@@ -387,7 +384,7 @@ void AutoNSB_Front()
 	wait1Msec(500);
 
 	//turns towards the ramp
-	Turn(1900, 100, left);
+	Turn(2000, 100, left);
 	motor[mRight] = 0;
 	motor[mLeft] = 0;
 	wait1Msec(500);
@@ -402,15 +399,15 @@ void AutoNSB_Back()
 	int add=0;
 	nMotorEncoder[mRight] = 0;
 
-	while(SensorValue(IR) != 5)
+	while(SensorValue(IR) != 5 && abs(distance) < 6200)
 	{
 		motor[mLeft] = -30;
 		motor[mRight] = -30;
+		distance = nMotorEncoder[mRight];
 	}
 	motor[mLeft] = 0;
 	motor[mRight] = 0;
 	wait1Msec(500);
-	distance = nMotorEncoder[mRight];
 	if(abs(distance) <= 3500)
 	{
 			add = 300;
@@ -437,7 +434,7 @@ void AutoNSB_Back()
 	Backward(FrontVal - abs(distance) - add-150, 30);
 
 	//turns to be parallel to the ramp
-	Turn(1760, 100, left);
+	Turn(1400, 100, left);
 	motor[mRight] = 0;
 	motor[mLeft] = 0;
 	wait1Msec(500);
@@ -449,7 +446,7 @@ void AutoNSB_Back()
 	wait1Msec(500);
 
 	//turns towards the ramp
-	Turn(1850,100,right);
+	Turn(1800,100,right);
 	motor[mRight] = 0;
 	motor[mLeft] = 0;
 	wait1Msec(500);
