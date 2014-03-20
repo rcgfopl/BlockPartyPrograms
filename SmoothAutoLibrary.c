@@ -49,11 +49,12 @@ void AutoNoStop_F()
 	motor[mLeft] = 0;
 	motor[mRight] = 0;
 	wait1Msec(500);
-	if(abs(distance) <= 5000)
-	{
-			add = 300;
-	}
-	else
+	//if(abs(distance) <= 5000)
+	//{
+	//		add = 300;
+	//}
+	//else
+	if(abs(distance) > 5000)
 	{
 			add = -200;
 	}
@@ -69,14 +70,14 @@ void AutoNoStop_F()
 
 	servo[AutoHook] = 0;
 	wait1Msec(1000);
-	servo[AutoHook] = 250;
+	servo[AutoHook] = 240;
 	wait1Msec(500);
 
 	if(abs(distance) <= 5000)
 	{
-		Backward(abs(distance) + add, 30);
+		Backward(abs(distance) + add - 500, 30);
 
-		Turn(1400, 100, right);
+		Turn(1350, 100, right);
 		motor[mRight] = 0;
 		motor[mLeft] = 0;
 		wait1Msec(500);
@@ -94,14 +95,14 @@ void AutoNoStop_F()
 		wait1Msec(500);
 
 		//goes onto the ramp
-		Backward(4500,100);
+		Backward(3400,100);
 	}
 	else
 	{
-		Forward(FrontVal - abs(distance) - add-400, 30);
+		Forward(FrontVal - abs(distance) - add-500, 30);
 
 		//turns to be parallel to the ramp
-		Turn(2000, 100, right);
+		Turn(2200, 100, right);
 		motor[mRight] = 0;
 		motor[mLeft] = 0;
 		wait1Msec(500);
@@ -113,13 +114,13 @@ void AutoNoStop_F()
 		wait1Msec(500);
 
 		//turns towards the ramp
-		Turn(2000,100,left);
+		Turn(1900,100,left);
 		motor[mRight] = 0;
 		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
-		Backward(4500,100);
+		Backward(3400,100);
 	}
 }
 
@@ -140,11 +141,12 @@ void AutoNSF_Front()
 	motor[mLeft] = 0;
 	motor[mRight] = 0;
 	wait1Msec(500);
-	if(abs(distance) <= 5000)
-	{
-			add = 300;
-	}
-	else
+	//if(abs(distance) <= 5000)
+	//{
+	//		add = 300;
+	//}
+	//else
+	if(abs(distance) > 5000)
 	{
 			add = -200;
 	}
@@ -160,13 +162,13 @@ void AutoNSF_Front()
 
 	servo[AutoHook] = 0;
 	wait1Msec(1000);
-	servo[AutoHook] = 250;
+	servo[AutoHook] = 240;
 	wait1Msec(500);
 
-	Forward(FrontVal - abs(distance) - add-400, 30);
+	Forward(FrontVal - abs(distance) - add-500, 30);
 
 	//turns to be parallel to the ramp
-	Turn(2000, 100, right);
+	Turn(2200, 100, right);
 	motor[mRight] = 0;
 	motor[mLeft] = 0;
 	wait1Msec(500);
@@ -178,13 +180,13 @@ void AutoNSF_Front()
 	wait1Msec(500);
 
 	//turns towards the ramp
-	Turn(2000,100,left);
+	Turn(1900,100,left);
 	motor[mRight] = 0;
 	motor[mLeft] = 0;
 	wait1Msec(500);
 
 	//goes onto the ramp
-	Backward(4500,100);
+	Backward(3400,100);
 }
 
 // Moves continuously forward, then stops in front of the box with the IR beacon and deposits the cube in it.
@@ -204,11 +206,12 @@ void AutoNSF_Back()
 	motor[mLeft] = 0;
 	motor[mRight] = 0;
 	wait1Msec(500);
-	if(abs(distance) <= 5000)
-	{
-			add = 300;
-	}
-	else
+	//if(abs(distance) <= 5000)
+	//{
+	//		add = 300;
+	//}
+	//else
+	if(abs(distance) > 5000)
 	{
 			add = -200;
 	}
@@ -224,12 +227,12 @@ void AutoNSF_Back()
 
 	servo[AutoHook] = 0;
 	wait1Msec(1000);
-	servo[AutoHook] = 250;
+	servo[AutoHook] = 240;
 	wait1Msec(500);
 
-	Backward(abs(distance) + add, 30);
+	Backward(abs(distance) + add - 500, 30);
 
-	Turn(1400, 100, right);
+	Turn(1450, 100, right);
 	motor[mRight] = 0;
 	motor[mLeft] = 0;
 	wait1Msec(500);
@@ -247,7 +250,7 @@ void AutoNSF_Back()
 	wait1Msec(500);
 
 	//goes onto the ramp
-	Backward(4500,100);
+	Backward(3400,100);
 }
 
 // Moves continuously backwards, then stops in front of the box with the IR beacon and deposits the cube in it.
@@ -272,10 +275,10 @@ void AutoNoStop_B()
 	{
 			add = 300;
 	}
-	else
-	{
-			add = -200;
-	}
+	//else
+	//{
+	//		add = -200;
+	//}
   if(add > 0)
   {
 		Backward(add, 30);
@@ -288,14 +291,14 @@ void AutoNoStop_B()
 
 	servo[AutoHook] = 0;
 	wait1Msec(1000);
-	servo[AutoHook] = 250;
+	servo[AutoHook] = 240;
 	wait1Msec(500);
 
 	if(abs(distance) <= 3500)
 	{
-		Forward(abs(distance) + add, 30);
+		Forward(abs(distance) + add - 500, 30);
 
-		Turn(2000, 100, left);
+		Turn(1450, 100, left);
 		motor[mRight] = 0;
 		motor[mLeft] = 0;
 		wait1Msec(500);
@@ -307,20 +310,20 @@ void AutoNoStop_B()
 		wait1Msec(500);
 
 		//turns towards the ramp
-		Turn(2000, 100, left);
+		Turn(1900, 100, left);
 		motor[mRight] = 0;
 		motor[mLeft] = 0;
 		wait1Msec(500);
 
 		//goes onto the ramp
-		Forward(4500,100);
+		Forward(3400,100);
 	}
 	else
 	{
-		Backward(FrontVal - abs(distance) - add-400, 30);
+		Backward(FrontVal - abs(distance) - add-500, 30);
 
 		//turns to be parallel to the ramp
-		Turn(1600, 100, left);
+		Turn(2200, 100, left);
 		motor[mRight] = 0;
 		motor[mLeft] = 0;
 		wait1Msec(500);
@@ -338,7 +341,7 @@ void AutoNoStop_B()
 		wait1Msec(500);
 
 		//goes onto the ramp
-		Forward(4500,100);
+		Forward(3400,100);
 	}
 }
 
@@ -363,10 +366,10 @@ void AutoNSB_Front()
 	{
 			add = 300;
 	}
-	else
-	{
-			add = -200;
-	}
+	//else
+	//{
+	//		add = -200;
+	//}
   if(add > 0)
   {
 		Backward(add, 30);
@@ -379,12 +382,12 @@ void AutoNSB_Front()
 
 	servo[AutoHook] = 0;
 	wait1Msec(1000);
-	servo[AutoHook] = 250;
+	servo[AutoHook] = 240;
 	wait1Msec(500);
 
-	Forward(abs(distance) + add, 30);
+	Forward(abs(distance) + add - 500, 30);
 
-	Turn(2000, 100, left);
+	Turn(1450, 100, left);
 	motor[mRight] = 0;
 	motor[mLeft] = 0;
 	wait1Msec(500);
@@ -396,13 +399,13 @@ void AutoNSB_Front()
 	wait1Msec(500);
 
 	//turns towards the ramp
-	Turn(2000, 100, left);
+	Turn(1900, 100, left);
 	motor[mRight] = 0;
 	motor[mLeft] = 0;
 	wait1Msec(500);
 
 	//goes onto the ramp
-	Forward(4500,100);
+	Forward(3400,100);
 }
 
 // Moves continuously backwards, then stops in front of the box with the IR beacon and deposits the cube in it.
@@ -426,10 +429,10 @@ void AutoNSB_Back()
 	{
 			add = 300;
 	}
-	else
-	{
-			add = -200;
-	}
+	//else
+	//{
+	//		add = -200;
+	//}
   if(add > 0)
   {
 		Backward(add, 30);
@@ -442,13 +445,13 @@ void AutoNSB_Back()
 
 	servo[AutoHook] = 0;
 	wait1Msec(1000);
-	servo[AutoHook] = 250;
+	servo[AutoHook] = 240;
 	wait1Msec(500);
 
-	Backward(FrontVal - abs(distance) - add-150, 30);
+	Backward(FrontVal - abs(distance) - add-500, 30);
 
 	//turns to be parallel to the ramp
-	Turn(1400, 100, left);
+	Turn(2200, 100, left);
 	motor[mRight] = 0;
 	motor[mLeft] = 0;
 	wait1Msec(500);
@@ -466,5 +469,5 @@ void AutoNSB_Back()
 	wait1Msec(500);
 
 	//goes onto the ramp
-	Forward(4500,100);
+	Forward(3400,100);
 }
